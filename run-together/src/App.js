@@ -1,11 +1,12 @@
 import "./style/css/index.css";
 import Main from "./components/Main";
+import { ChatroomListProvider } from "./redux/store";
 
 function App() {
   return (
-    <div className="App">
+    <ChatroomListProvider>
       <Main />
-    </div>
+    </ChatroomListProvider>
   );
 }
 
