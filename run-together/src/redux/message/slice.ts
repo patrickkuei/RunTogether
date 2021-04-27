@@ -1,34 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IChatroomList, ISideBarChatroom, IUser } from "../../interface";
+import { ISideBarChatroomList, IUser } from "../../interface";
 import { useAppSelector } from "../app/hooks";
-import { chatroomListReducer } from "./Reducers";
+import { sideBarChatroomListReducer } from "./Reducers";
 
-const initialUserState: IUser = {
+const _initialUserState: IUser = {
   id: -1,
   name: "initial user name",
   avatarUrl: "initial user avatarUrl",
 };
 
-export const initialState: IChatroomList = {
+const _initialState: ISideBarChatroomList = {
   isLoading: true,
-  chatroomList: [
+  list: [
     {
       id: "initial id",
-      participant: initialUserState,
+      participant: _initialUserState,
       unreadMessageCount: 0,
     },
   ],
 };
 
-export const chatRoomListSlice = createSlice({
-  name: "chatRoomListSlice",
-  initialState,
-  reducers: chatroomListReducer,
+export const sideBarChatRoomListSlice = createSlice({
+  name: "sideBarChatRoomListSlice",
+  initialState: _initialState,
+  reducers: sideBarChatroomListReducer,
 });
 
-export const chatroomListActions = chatRoomListSlice.actions;
+export const sideBarChatroomListActions = sideBarChatRoomListSlice.actions;
 
-export const useChatroomList = () =>
-  useAppSelector((state) => state.chatroomList);
+export const useSideBarChatroomList = () =>
+  useAppSelector((state) => state.sideBarChatroomList);
 
-export default chatRoomListSlice.reducer;
+export default sideBarChatRoomListSlice.reducer;

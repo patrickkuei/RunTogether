@@ -1,37 +1,48 @@
 import React, { useEffect } from "react";
 import { Menu } from "antd";
 import SideBarChatroom from "./SideBarChatroom";
-import { chatroomListActions, useChatroomList } from "../redux/message/slice";
+import {
+  sideBarChatroomListActions,
+  useSideBarChatroomList,
+} from "../redux/message/slice";
 import { useAppDispatch } from "../redux/app/hooks";
 import { ISideBarChatroom } from "../interface";
 import { getRandomChatroom } from "../mock/GetRandomChatroom";
 
-type ChatroomListProps = {
+type SideBarChatroomListProps = {
   collapsed: boolean;
 };
 
-export default function ChatroomList({ collapsed }: ChatroomListProps) {
-  const chatroomList = useChatroomList();
+export default function SideBarChatroomList({
+  collapsed,
+}: SideBarChatroomListProps) {
+  const sideBarChatroomList = useSideBarChatroomList();
   const dispatch = useAppDispatch();
-  const { updateList } = chatroomListActions;
-  const newChatroomList: ISideBarChatroom[] = [];
+  const { updateList, resetUnreadCountById } = sideBarChatroomListActions;
+
+  const newSideBarChatroomList: ISideBarChatroom[] = [];
   const updateSideBarChatroom = () => {
     for (let i = 0; i < 5; i++) {
-      newChatroomList.push(getRandomChatroom());
+      newSideBarChatroomList.push(getRandomChatroom());
     }
-    dispatch(updateList(newChatroomList));
+    dispatch(updateList(newSideBarChatroomList));
   };
 
   useEffect(() => {
     updateSideBarChatroom();
   }, []);
 
-  return chatroomList.isLoading ? (
+  const handleSideBarChatroomClick = (id: string) => {
+    dispatch(resetUnreadCountById(id));
+  };
+
+  return sideBarChatroomList.isLoading ? (
     <div>loading...</div>
   ) : (
     <Menu theme="light" mode="inline">
-      {chatroomList.chatroomList.map((sideBarChatroom) => (
+      {sideBarChatroomList.list.map((sideBarChatroom) => (
         <Menu.Item
+          onClick={() => handleSideBarChatroomClick(sideBarChatroom.id)}
           key={sideBarChatroom.id}
           className="sidebar-chatroom-container"
           title={sideBarChatroom.latestMessage?.preview}

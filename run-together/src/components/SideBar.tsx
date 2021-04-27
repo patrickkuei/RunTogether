@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Layout } from "antd";
-import ChatroomList from "./ChatroomList";
+import SideBarChatroomList from "./SideBarChatroomList";
 import SearchBar from "./SearchBar";
 import SideBarHeader from "./SideBarHeader";
 
@@ -28,7 +28,7 @@ export default function SideBar() {
         <SideBarHeader collapsed={collapsed} />
       </Header>
       <SearchBar collapsed={collapsed} handleSearchIconClick={handleSearchIconClick}  />
-      <ChatroomList collapsed={collapsed} />
+      <SideBarChatroomList collapsed={collapsed} />
     </Sider>
   );
 }

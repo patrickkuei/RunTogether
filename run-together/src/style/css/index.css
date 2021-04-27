@@ -1,9 +1,9 @@
 .sideBar {
   background: #ffffff !important;
-  color: #000000 !important;
+  color: #000000;
   position: relative; }
   .sideBar .sideBar_header {
-    background: #ffffff !important;
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: left;
@@ -14,7 +14,7 @@
     .sideBar .sideBar_header .logo-container {
       margin: 10px 15px 0 30px; }
     .sideBar .sideBar_header .logo-icon {
-      color: #1890ff !important;
+      color: #1890ff;
       font-size: 30px; }
     .sideBar .sideBar_header .sidebar_button {
       position: absolute !important;
@@ -22,12 +22,12 @@
       margin: 0 12px;
       border: none !important; }
     .sideBar .sideBar_header .sideBar_button_icon {
-      color: #1890ff !important; }
+      color: #1890ff; }
   .sideBar .search-bar-container {
     height: 60px;
     display: flex; }
     .sideBar .search-bar-container .ant-input {
-      margin-left: 5px; }
+      margin-left: 8px; }
     .sideBar .search-bar-container .ant-input-prefix {
       margin: 0 15px 0 29px; }
   .sideBar .ant-menu-root {
@@ -36,9 +36,24 @@
     overflow-x: hidden; }
     .sideBar .ant-menu-root .sidebar-chatroom-container {
       overflow: visible !important;
-      height: 60px !important; }
+      height: 60px !important;
+      padding-left: 10px !important; }
+      .sideBar .ant-menu-root .sidebar-chatroom-container.ant-menu-item-selected {
+        background: #ededed !important; }
+        .sideBar .ant-menu-root .sidebar-chatroom-container.ant-menu-item-selected section {
+          background: inherit !important; }
+          .sideBar .ant-menu-root .sidebar-chatroom-container.ant-menu-item-selected section aside {
+            background: inherit !important; }
+          .sideBar .ant-menu-root .sidebar-chatroom-container.ant-menu-item-selected section header {
+            background: inherit !important; }
+          .sideBar .ant-menu-root .sidebar-chatroom-container.ant-menu-item-selected section main {
+            background: inherit !important; }
+        .sideBar .ant-menu-root .sidebar-chatroom-container.ant-menu-item-selected::after {
+          border: none !important; }
+      .sideBar .ant-menu-root .sidebar-chatroom-container.ant-menu-item::after {
+        border: none !important; }
       .sideBar .ant-menu-root .sidebar-chatroom-container .sideBar-chatroom {
-        background: #ffffff !important;
+        background: #ffffff;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -59,7 +74,7 @@
           flex-direction: column;
           margin-left: 12px; }
           .sideBar .ant-menu-root .sidebar-chatroom-container .sideBar-chatroom .sideBar-chatroom_avatar-info-container .sideBar-chatroom_avatar-info_participant {
-            background: #ffffff !important;
+            background: #ffffff;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -75,7 +90,7 @@
               width: 40px;
               font-weight: 500; }
           .sideBar .ant-menu-root .sidebar-chatroom-container .sideBar-chatroom .sideBar-chatroom_avatar-info-container .sideBar-chatroom_latest-message-container {
-            background: #ffffff !important;
+            background: #ffffff;
             display: flex;
             align-items: start;
             justify-content: start;
@@ -99,7 +114,7 @@
           width: 25px;
           border-radius: 12.5px; }
           .sideBar .ant-menu-root .sidebar-chatroom-container .sideBar-chatroom .unread-message-count-container span {
-            color: #ffffff !important;
+            color: #ffffff;
             font-size: 12px;
             font-weight: 700;
             line-height: 1; }
@@ -112,7 +127,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #949494 !important;
+    color: #949494;
     height: 55px; }
     .sideBar .collapsed-search-icon-container:hover {
       cursor: pointer; }
@@ -123,10 +138,14 @@
     flex-direction: column;
     align-items: center; }
     .sideBar .ant-menu-inline-collapsed .sidebar-chatroom-container {
-      padding: 0; }
+      padding: 0 !important;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center; }
       .sideBar .ant-menu-inline-collapsed .sidebar-chatroom-container .avatar-img {
         border-radius: 25px; }
   .sideBar .ant-layout-sider-trigger {
-    background: #ffffff !important; }
+    background: #ffffff; }
     .sideBar .ant-layout-sider-trigger span {
-      color: #002140 !important; }
+      color: #002140; }

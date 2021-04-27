@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react";
 
-export interface IChatroomList {
+export interface ISideBarChatroomList {
   isLoading: boolean;
-  chatroomList: ISideBarChatroom[];
+  list: ISideBarChatroom[];
 }
 export interface ISideBarChatroom {
   id: string;

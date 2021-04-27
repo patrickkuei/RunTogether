@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from "react";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import chatRoomListSlice from "./message/slice";
+import sideBarChatRoomListSlice from "./message/slice";
 
 const store = configureStore({
   reducer: {
-    chatroomList: chatRoomListSlice,
+    sideBarChatroomList: sideBarChatRoomListSlice,
   },
 });
 

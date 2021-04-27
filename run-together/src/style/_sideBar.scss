@@ -2,11 +2,10 @@
 
 .sideBar {
   @include override-background(#ffffff);
-  @include override-color(#000000);
+  color: #000000;
   position: relative;
-
   .sideBar_header {
-    @include override-background(#ffffff);
+    background: #ffffff;
     @include display-flex(center, left);
     font-size: 20px;
     padding: 0 !important;
@@ -17,7 +16,7 @@
       margin: 10px 15px 0 30px;
     }
     .logo-icon {
-      @include override-color(#1890ff);
+      color: #1890ff;
       font-size: 30px;
     }
     .sidebar_button {
@@ -27,14 +26,14 @@
       border: none !important;
     }
     .sideBar_button_icon {
-      @include override-color(#1890ff);
+      color: #1890ff;
     }
   }
   .search-bar-container {
     height: 60px;
     display: flex;
     .ant-input {
-      margin-left: 5px;
+      margin-left: 8px;
     }
     .ant-input-prefix {
       margin: 0 15px 0 29px;
@@ -47,14 +46,36 @@
     .sidebar-chatroom-container {
       overflow: visible !important;
       height: 60px !important;
-
+      padding-left: 10px !important;
+      &.ant-menu-item-selected {
+        background: #ededed !important;
+        section {
+          background: inherit !important;
+          aside {
+            background: inherit !important;
+          }
+          header {
+            background: inherit !important;
+          }
+          main {
+            background: inherit !important;
+          }
+        }
+        &::after {
+          border: none !important;
+        }
+      }
+      &.ant-menu-item {
+        &::after {
+          border: none !important;
+        }
+      }
       .sideBar-chatroom {
-        @include override-background(#ffffff);
+        background: #ffffff;
         @include display-flex;
         flex-direction: row;
         width: 100%;
         height: 100%;
-
         .sideBar-chatroom_avatar-img-container {
           height: 100%;
           .ant-layout-sider-children {
@@ -70,7 +91,7 @@
           flex-direction: column;
           margin-left: 12px;
           .sideBar-chatroom_avatar-info_participant {
-            @include override-background(#ffffff);
+            background: #ffffff;
             @include display-flex(center, space-between);
             height: 30px;
             line-height: 1;
@@ -87,7 +108,7 @@
             }
           }
           .sideBar-chatroom_latest-message-container {
-            @include override-background(#ffffff);
+            background: #ffffff;
             @include display-flex(start, start);
             height: 30px;
             span {
@@ -112,7 +133,7 @@
           width: 25px;
           border-radius: (25px/2);
           span {
-            @include override-color(#ffffff);
+            color: #ffffff;
             font-size: 12px;
             font-weight: 700;
             line-height: 1;
@@ -130,7 +151,7 @@
   }
   .collapsed-search-icon-container {
     @include display-flex;
-    @include override-color(#949494);
+    color: #949494;
     height: 55px;
     &:hover {
       cursor: pointer;
@@ -144,16 +165,20 @@
     flex-direction: column;
     align-items: center;
     .sidebar-chatroom-container {
-      padding: 0;
+      padding: 0 !important;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
       .avatar-img {
         border-radius: 25px;
       }
     }
   }
   .ant-layout-sider-trigger {
-    @include override-background(#ffffff);
+    background: #ffffff;
     span {
-      @include override-color(#002140);
+      color: #002140;
     }
   }
 }

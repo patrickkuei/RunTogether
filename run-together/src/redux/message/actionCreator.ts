@@ -1,14 +1,35 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { IChatroomList, ISideBarChatroom } from "../../interface";
+import { ISideBarChatroomList, ISideBarChatroom } from "../../interface";
 
 const updateList = (
-  prevState: IChatroomList,
+  prevState: ISideBarChatroomList,
   action: PayloadAction<Array<ISideBarChatroom>>
-): IChatroomList => {
+): ISideBarChatroomList => {
   const newList: Array<ISideBarChatroom> = action.payload;
   return {
     isLoading: false,
-    chatroomList: newList,
+    list: newList,
   };
 };
-export default { updateList };
+
+const resetUnreadCountById = (
+  prevState: ISideBarChatroomList,
+  action: PayloadAction<string>
+) => {
+  const id = action.payload;
+  const newList: Array<ISideBarChatroom> = prevState.list.map(
+    (sideBarChatroom: ISideBarChatroom) => {
+      const prevSideBarChatroom = { ...sideBarChatroom };
+      if (prevSideBarChatroom.id === id) {
+        prevSideBarChatroom.unreadMessageCount = 0;
+      }
+      return prevSideBarChatroom;
+    }
+  );
+  return {
+    isLoading: false,
+    list: newList,
+  };
+};
+
+export default { updateList, resetUnreadCountById };
