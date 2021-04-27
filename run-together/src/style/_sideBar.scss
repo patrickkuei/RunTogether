@@ -1,24 +1,24 @@
+@import "./_global";
+
 .sideBar {
+  @include override-background(#ffffff);
+  @include override-color(#000000);
   position: relative;
-  background: #ffffff !important;
-  color: black;
 
   .sideBar_header {
-    background: #ffffff !important;
+    @include override-background(#ffffff);
+    @include display-flex(center, left);
     font-size: 20px;
     padding: 0 !important;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    .header-logo{
+    .header-logo {
       cursor: default;
     }
     .logo-container {
       margin: 10px 15px 0 30px;
     }
     .logo-icon {
+      @include override-color(#1890ff);
       font-size: 30px;
-      color: #1890ff !important;
     }
     .sidebar_button {
       position: absolute !important;
@@ -27,7 +27,7 @@
       border: none !important;
     }
     .sideBar_button_icon {
-      color: #1890ff !important;
+      @include override-color(#1890ff);
     }
   }
   .search-bar-container {
@@ -40,7 +40,88 @@
       margin: 0 15px 0 29px;
     }
   }
-  .header_collapsed{
+  .ant-menu-root {
+    max-height: 80%;
+    overflow-y: overlay;
+    overflow-x: hidden;
+    .sidebar-chatroom-container {
+      overflow: visible !important;
+      height: 60px !important;
+
+      .sideBar-chatroom {
+        @include override-background(#ffffff);
+        @include display-flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+
+        .sideBar-chatroom_avatar-img-container {
+          height: 100%;
+          .ant-layout-sider-children {
+            @include display-flex;
+          }
+          .avatar-img {
+            border-radius: 25px;
+          }
+        }
+        .sideBar-chatroom_avatar-info-container {
+          max-width: 250px;
+          display: flex;
+          flex-direction: column;
+          margin-left: 12px;
+          .sideBar-chatroom_avatar-info_participant {
+            @include override-background(#ffffff);
+            @include display-flex(center, space-between);
+            height: 30px;
+            line-height: 1;
+            padding: 0;
+            .sideBar-chatroom_name {
+              max-width: 200px;
+              overflow: hidden;
+            }
+            .latest-message-time {
+              @include override-color(#aaaaaa);
+              padding: 0;
+              width: 40px;
+              font-weight: 500;
+            }
+          }
+          .sideBar-chatroom_latest-message-container {
+            @include override-background(#ffffff);
+            @include display-flex(start, start);
+            height: 30px;
+            span {
+              line-height: 1;
+              color: #aaaaaa;
+            }
+          }
+        }
+        .have-unread-message {
+          font-weight: 800;
+          span {
+            @include override-color(#000000);
+          }
+        }
+        .unread-message-count-container {
+          @include display-flex;
+          @include override-background(#5797ff);
+          position: absolute;
+          right: 23px;
+          bottom: 12px;
+          height: 25px;
+          width: 25px;
+          border-radius: (25px/2);
+          span {
+            @include override-color(#ffffff);
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1;
+          }
+        }
+      }
+    }
+  }
+  .collapsed_header {
     justify-content: center;
     margin-top: 5px;
   }
@@ -48,22 +129,31 @@
     margin: 0;
   }
   .collapsed-search-icon-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: gray;
-
-    &:hover{
+    @include display-flex;
+    @include override-color(#949494);
+    height: 55px;
+    &:hover {
       cursor: pointer;
     }
   }
-  .collapsed-search-icon{
+  .collapsed-search-icon {
     font-size: 30px;
   }
+  .ant-menu-inline-collapsed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .sidebar-chatroom-container {
+      padding: 0;
+      .avatar-img {
+        border-radius: 25px;
+      }
+    }
+  }
   .ant-layout-sider-trigger {
-    background: #ffffff !important;
+    @include override-background(#ffffff);
     span {
-      color: #002140;
+      @include override-color(#002140);
     }
   }
 }

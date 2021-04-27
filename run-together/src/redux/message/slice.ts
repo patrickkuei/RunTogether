@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ISideBarChatroom, IUser } from "../../interface";
+import { IChatroomList, ISideBarChatroom, IUser } from "../../interface";
 import { useAppSelector } from "../app/hooks";
 import { chatroomListReducer } from "./Reducers";
 
@@ -9,13 +9,16 @@ const initialUserState: IUser = {
   avatarUrl: "initial user avatarUrl",
 };
 
-export const initialState: Array<ISideBarChatroom> = [
-  {
-    id: "initial id",
-    participant: initialUserState,
-    unreadMessageCount: 0,
-  },
-];
+export const initialState: IChatroomList = {
+  isLoading: true,
+  chatroomList: [
+    {
+      id: "initial id",
+      participant: initialUserState,
+      unreadMessageCount: 0,
+    },
+  ],
+};
 
 export const chatRoomListSlice = createSlice({
   name: "chatRoomListSlice",

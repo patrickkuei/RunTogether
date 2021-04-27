@@ -1,8 +1,8 @@
 import { ValidateSliceCaseReducers } from "@reduxjs/toolkit";
-import { ISideBarChatroom } from "../../interface";
+import { IChatroomList, ISideBarChatroom } from "../../interface";
 import actionCreator from "./actionCreator";
 
 export const chatroomListReducer: ValidateSliceCaseReducers<
-  Array<ISideBarChatroom>,
+  IChatroomList,
   typeof actionCreator
 > = actionCreator;

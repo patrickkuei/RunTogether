@@ -1,52 +1,47 @@
 import React, { useEffect } from "react";
 import { Menu } from "antd";
 import SideBarChatroom from "./SideBarChatroom";
-import {
-  chatroomListActions,
-  useChatroomList,
-} from "../redux/message/slice";
+import { chatroomListActions, useChatroomList } from "../redux/message/slice";
 import { useAppDispatch } from "../redux/app/hooks";
-import { ISideBarChatroom, IUser } from "../interface";
+import { ISideBarChatroom } from "../interface";
+import { getRandomChatroom } from "../mock/GetRandomChatroom";
 
-export default function ChatroomList() {
+type ChatroomListProps = {
+  collapsed: boolean;
+};
+
+export default function ChatroomList({ collapsed }: ChatroomListProps) {
   const chatroomList = useChatroomList();
   const dispatch = useAppDispatch();
   const { updateList } = chatroomListActions;
-
+  const newChatroomList: ISideBarChatroom[] = [];
   const updateSideBarChatroom = () => {
-    const newUser: IUser = {
-      id: 999,
-      name: "new user",
-      avatarUrl: "new user avatarUrl",
-    };
-    const newSideBarChatroot: ISideBarChatroom = {
-      id: "new id",
-      participant: newUser,
-      unreadMessageCount: 999,
-    };
-
-    dispatch(updateList([newSideBarChatroot]));
+    for (let i = 0; i < 5; i++) {
+      newChatroomList.push(getRandomChatroom());
+    }
+    dispatch(updateList(newChatroomList));
   };
 
   useEffect(() => {
-    console.log("before update", chatroomList);
-    
     updateSideBarChatroom();
-
   }, []);
 
-  useEffect(() => {
-    console.log("after update", chatroomList);
-  }, [chatroomList])
-
-  return (
+  return chatroomList.isLoading ? (
+    <div>loading...</div>
+  ) : (
     <Menu theme="light" mode="inline">
-      <Menu.Item key="1">
-        <SideBarChatroom />
-      </Menu.Item>
-      <Menu.Item key="2">
-        <SideBarChatroom />
-      </Menu.Item>
+      {chatroomList.chatroomList.map((sideBarChatroom) => (
+        <Menu.Item
+          key={sideBarChatroom.id}
+          className="sidebar-chatroom-container"
+          title={sideBarChatroom.latestMessage?.preview}
+        >
+          <SideBarChatroom
+            sideBarChatroom={sideBarChatroom}
+            collapsed={collapsed}
+          />
+        </Menu.Item>
+      ))}
     </Menu>
   );
 }

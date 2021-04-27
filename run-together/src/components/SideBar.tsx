@@ -24,11 +24,11 @@ export default function SideBar() {
       onCollapse={onCollapse}
       width={350}
     >
-      <Header className={collapsed ?"sideBar_header header_collapsed" :"sideBar_header"}>
+      <Header className={collapsed ?"sideBar_header collapsed_header" :"sideBar_header"}>
         <SideBarHeader collapsed={collapsed} />
       </Header>
       <SearchBar collapsed={collapsed} handleSearchIconClick={handleSearchIconClick}  />
-      <ChatroomList />
+      <ChatroomList collapsed={collapsed} />
     </Sider>
   );
 }

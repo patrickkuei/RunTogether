@@ -1,0 +1,13 @@
+@mixin display-flex($align-items: center, $justify-content: center) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+@mixin override-background($color) {
+  background: $color !important;
+}
+
+@mixin override-color($color) {
+  color: $color !important;
+}

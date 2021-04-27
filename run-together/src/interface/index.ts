@@ -1,5 +1,9 @@
 import { FunctionComponent } from "react";
 
+export interface IChatroomList {
+  isLoading: boolean;
+  chatroomList: ISideBarChatroom[];
+}
 export interface ISideBarChatroom {
   id: string;
   participant: IUser;
@@ -12,7 +16,7 @@ export interface ILatestMessage {
   type: MessageType;
   senderId: number;
   preview?: string;
-  createdAt: Date;
+  createdAt: number;
 }
 
 export enum MessageType {

@@ -1,14 +1,14 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { ISideBarChatroom } from "../../interface";
-
-interface IUpdateListPayload {
-  newList: Array<ISideBarChatroom>
-}
+import { IChatroomList, ISideBarChatroom } from "../../interface";
 
 const updateList = (
-  prevState: Array<ISideBarChatroom>,
+  prevState: IChatroomList,
   action: PayloadAction<Array<ISideBarChatroom>>
-): Array<ISideBarChatroom> => {
-  return [...action?.payload];
+): IChatroomList => {
+  const newList: Array<ISideBarChatroom> = action.payload;
+  return {
+    isLoading: false,
+    chatroomList: newList,
+  };
 };
 export default { updateList };
