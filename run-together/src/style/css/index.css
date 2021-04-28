@@ -149,3 +149,16 @@
     background: #ffffff; }
     .sideBar .ant-layout-sider-trigger span {
       color: #002140; }
+
+.site-layout .header-background {
+  background: #ffffff; }
+
+.site-layout footer {
+  padding: 0;
+  margin: 3px; }
+  .site-layout footer input {
+    padding: 12px 6px;
+    width: 100%;
+    border: none; }
+    .site-layout footer input:focus {
+      outline: none; }

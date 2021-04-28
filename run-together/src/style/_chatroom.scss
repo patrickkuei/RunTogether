@@ -1,0 +1,17 @@
+.site-layout{
+  .header-background{
+    background: #ffffff;
+  }
+  footer{
+    padding: 0;
+    margin: 3px;
+    input{
+      padding: 12px 6px;
+      width: 100%;
+      border: none;
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+}
