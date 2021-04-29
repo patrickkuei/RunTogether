@@ -1,5 +1,5 @@
 import { Layout, Image, Typography } from "antd";
-import { Header, Content, Footer } from "antd/lib/layout/layout";
+import { Header, Content } from "antd/lib/layout/layout";
 import Sider from "antd/lib/layout/Sider";
 import React, { useLayoutEffect, useState } from "react";
 import { ISideBarChatroom } from "../interface";

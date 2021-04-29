@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Layout, Menu, Breadcrumb, Image } from "antd";
+import { Layout, Image } from "antd";
 import { IChatroom } from "../interface";
 const { Content } = Layout;
 
@@ -7,7 +7,7 @@ type MessageListProps = {
   chatroom: IChatroom;
 };
 
-export default function MessageList({ chatroom }: MessageListProps) {
+export default function ChatroomMessageList({ chatroom }: MessageListProps) {
   const { avatarUrl } = chatroom.currentParticipant;
 
   const bottomDiv = useRef<null | HTMLDivElement>(null);

@@ -8,7 +8,7 @@ type SearchBarProps = {
   handleSearchIconClick?: () => void;
 };
 
-export default function SearchBar({ collapsed, handleSearchIconClick }: SearchBarProps) {
+export default function SideBarSearchBar({ collapsed, handleSearchIconClick }: SearchBarProps) {
   
   return !collapsed ? (
     <div className="search-bar-container">

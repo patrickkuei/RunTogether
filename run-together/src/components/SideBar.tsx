@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Layout } from "antd";
 import SideBarChatroomList from "./SideBarChatroomList";
-import SearchBar from "./SearchBar";
+import SideBarSearchBar from "./SideBarSearchBar";
 import SideBarHeader from "./SideBarHeader";
 
 const { Header, Sider } = Layout;
@@ -27,7 +27,7 @@ export default function SideBar() {
       <Header className={collapsed ?"sideBar_header collapsed_header" :"sideBar_header"}>
         <SideBarHeader collapsed={collapsed} />
       </Header>
-      <SearchBar collapsed={collapsed} handleSearchIconClick={handleSearchIconClick}  />
+      <SideBarSearchBar collapsed={collapsed} handleSearchIconClick={handleSearchIconClick}  />
       <SideBarChatroomList collapsed={collapsed} />
     </Sider>
   );

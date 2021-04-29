@@ -1,7 +1,7 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
-import InputForm from "./InputForm";
-import MessageList from "./MessageList";
+import { Layout } from "antd";
+import ChatroomInput from "./ChatroomInput";
+import ChatroomMessageList from "./ChatroomMessageList";
 import ChatroomHeader from "./ChatroomHeader";
 import { useChatroom } from "../redux/chatroom/slice";
 
@@ -15,8 +15,8 @@ export default function Chatroom() {
       <Header className="header-background" style={{ padding: 0 }}>
         <ChatroomHeader chatroom={chatroom} />
       </Header>
-      <MessageList chatroom={chatroom} />
-      <InputForm />
+      <ChatroomMessageList chatroom={chatroom} />
+      <ChatroomInput />
     </Layout>
   );
 }

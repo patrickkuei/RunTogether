@@ -4,7 +4,7 @@ import SideBarChatroom from "./SideBarChatroom";
 import {
   sideBarChatroomListActions,
   useSideBarChatroomList,
-} from "../redux/message/slice";
+} from "../redux/sidebarChatroomList/slice";
 import { useAppDispatch } from "../redux/app/hooks";
 import { IChatroom, ISideBarChatroom, IUser } from "../interface";
 import { getRandomChatroom } from "../mock/GetRandomChatroom";

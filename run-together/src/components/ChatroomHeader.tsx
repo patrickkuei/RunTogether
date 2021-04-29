@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Image, Typography } from "antd";
+import { Image } from "antd";
 import { IChatroom } from "../interface";
 
 type ChatroomHeaderProps = {
