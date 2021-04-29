@@ -21,60 +21,35 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
   }, [chatroom]);
 
   return (
-    <Content style={{ overflow: "hidden scroll" }}>
+    <Content className="message-list-container">
       {chatroom.chatroomMessages[0].id === "initial id" ? (
         <div></div>
       ) : (
-        <div
-          className="site-layout-background"
-          style={{ padding: 16, minHeight: 360 }}
-        >
+        <div className="site-layout-background">
           {chatroom.chatroomMessages.map((message) => (
             <div
               key={message.id}
-              style={
+              className={
                 message.senderId === 0
-                  ? {
-                      display: "flex",
-                      marginBottom: 30,
-                      flexDirection: "row-reverse",
-                    }
-                  : { display: "flex", marginBottom: 20 }
+                  ? "message-container user"
+                  : "message-container"
               }
             >
               {message.senderId === 0 ? (
                 <div></div>
               ) : (
-                <div
-                  className="avatar"
-                  style={{
-                    width: 30,
-                    display: "flex",
-                    alignItems: "center",
-                    marginRight: 12,
-                  }}
-                >
+                <div className="avatar">
                   <Image
                     src={avatarUrl}
                     width={30}
                     height={30}
                     preview={false}
-                    style={{ borderRadius: 25 }}
                   />
                 </div>
               )}
 
               <div
-                style={
-                  message.senderId === 0
-                    ? { background: "#ffffff", padding: 8, borderRadius: 16 }
-                    : {
-                        background: "#4179f1",
-                        padding: 8,
-                        borderRadius: 16,
-                        color: "#ffffff",
-                      }
-                }
+                className={message.senderId === 0 ? "message user" : "message"}
               >
                 {message.message}
               </div>
@@ -82,7 +57,7 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
           ))}
         </div>
       )}
-      <div style={{ float: "left", clear: "both" }} ref={bottomDiv}></div>
+      <div className="divForAutoScroll" ref={bottomDiv}></div>
     </Content>
   );
 }

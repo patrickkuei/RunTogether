@@ -157,6 +157,37 @@
 .site-layout .header-background {
   background: #ffffff; }
 
+.site-layout .message-list-container {
+  overflow: hidden scroll; }
+  .site-layout .message-list-container .site-layout-background {
+    padding: 16px;
+    min-height: 360px; }
+    .site-layout .message-list-container .site-layout-background .message-container {
+      display: flex;
+      margin-bottom: 30px; }
+      .site-layout .message-list-container .site-layout-background .message-container.user {
+        flex-direction: row-reverse; }
+      .site-layout .message-list-container .site-layout-background .message-container .avatar {
+        width: 30px;
+        display: flex;
+        align-items: center;
+        margin-right: 12px; }
+        .site-layout .message-list-container .site-layout-background .message-container .avatar img {
+          border-radius: 25px; }
+      .site-layout .message-list-container .site-layout-background .message-container .message {
+        background: #4179f1;
+        padding: 8px;
+        border-radius: 16px;
+        color: #ffffff; }
+        .site-layout .message-list-container .site-layout-background .message-container .message.user {
+          background: #ffffff;
+          padding: 8px;
+          border-radius: 16px;
+          color: #000000; }
+  .site-layout .message-list-container .divForAutoScroll {
+    float: left;
+    clear: both; }
+
 .site-layout footer {
   padding: 0;
   margin: 3px; }

@@ -22,14 +22,18 @@ export default function ChatroomHeader({ chatroom }: ChatroomHeaderProps) {
           alignItems: "center",
         }}
       >
-        <div style={{margin: "0 12px"}}>{chatroom.currentUser.name}</div>
-        <Image
-          width={50}
-          height={50}
-          src={chatroom.currentUser.avatarUrl}
-          preview={false}
-          style={{borderRadius: 25}}
-        />
+        <div style={{ margin: "0 12px" }}>{chatroom.currentUser.name}</div>
+        {chatroom.currentUser.avatarUrl === "initial user avatar url" ? (
+          <div></div>
+        ) : (
+          <Image
+            width={50}
+            height={50}
+            src={chatroom.currentUser.avatarUrl}
+            preview={false}
+            style={{ borderRadius: 25 }}
+          />
+        )}
       </div>
     </div>
   );
