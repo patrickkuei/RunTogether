@@ -31,3 +31,18 @@ export interface IUser {
   name: string;
   avatarUrl: string;
 }
+
+export interface IChatroom {
+  isloading: boolean;
+  currentParticipant: IUser;
+  currentUser: IUser;
+  chatroomMessages: IChatroomMessage[];
+}
+
+export interface IChatroomMessage {
+  id: string;
+  type: MessageType;
+  senderId: number;
+  message: string;
+  createdAt: number;
+}

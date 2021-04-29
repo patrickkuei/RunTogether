@@ -6,8 +6,10 @@ import {
   useSideBarChatroomList,
 } from "../redux/message/slice";
 import { useAppDispatch } from "../redux/app/hooks";
-import { ISideBarChatroom } from "../interface";
+import { IChatroom, ISideBarChatroom, IUser } from "../interface";
 import { getRandomChatroom } from "../mock/GetRandomChatroom";
+import { chatroomActions } from "../redux/chatroom/slice";
+import { getRandomMessages } from "../mock/GetRandomMessages";
 
 type SideBarChatroomListProps = {
   collapsed: boolean;
@@ -19,8 +21,10 @@ export default function SideBarChatroomList({
   const sideBarChatroomList = useSideBarChatroomList();
   const dispatch = useAppDispatch();
   const { updateList, resetUnreadCountById } = sideBarChatroomListActions;
-
+  const { updateChatroom } = chatroomActions;
   const newSideBarChatroomList: ISideBarChatroom[] = [];
+
+  // mock fatching data
   const updateSideBarChatroom = () => {
     for (let i = 0; i < 5; i++) {
       newSideBarChatroomList.push(getRandomChatroom());
@@ -32,8 +36,26 @@ export default function SideBarChatroomList({
     updateSideBarChatroom();
   }, []);
 
-  const handleSideBarChatroomClick = (id: string) => {
+  // mock fatching data
+  const getChatroomByParticipant = (participent: IUser): IChatroom => {
+    const newRandomMessages = getRandomMessages(participent.id);
+    const currentUser: IUser = {
+      id: 0,
+      name: "YOU",
+      avatarUrl: "/userImg.jpg",
+    };
+    return {
+      isloading: false,
+      currentParticipant: participent,
+      currentUser,
+      chatroomMessages: newRandomMessages,
+    };
+  };
+
+  const handleSideBarChatroomClick = (sideBarChatroom: ISideBarChatroom) => {
+    const { id, participant } = sideBarChatroom;
     dispatch(resetUnreadCountById(id));
+    dispatch(updateChatroom(getChatroomByParticipant(participant)));
   };
 
   return sideBarChatroomList.isLoading ? (
@@ -42,7 +64,7 @@ export default function SideBarChatroomList({
     <Menu theme="light" mode="inline">
       {sideBarChatroomList.list.map((sideBarChatroom) => (
         <Menu.Item
-          onClick={() => handleSideBarChatroomClick(sideBarChatroom.id)}
+          onClick={() => handleSideBarChatroomClick(sideBarChatroom)}
           key={sideBarChatroom.id}
           className="sidebar-chatroom-container"
           title={sideBarChatroom.latestMessage?.preview}

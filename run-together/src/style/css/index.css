@@ -39,7 +39,8 @@
       height: 60px !important;
       padding-left: 10px !important; }
       .sideBar .ant-menu-root .sidebar-chatroom-container.ant-menu-item-selected {
-        background: #ededed !important; }
+        background: #ededed !important;
+        box-shadow: 0 0 4px #aaaaaa; }
         .sideBar .ant-menu-root .sidebar-chatroom-container.ant-menu-item-selected section {
           background: inherit !important; }
           .sideBar .ant-menu-root .sidebar-chatroom-container.ant-menu-item-selected section aside {
@@ -118,6 +119,9 @@
             font-size: 12px;
             font-weight: 700;
             line-height: 1; }
+      .sideBar .ant-menu-root .sidebar-chatroom-container:hover {
+        transition: box-shadow 0.2s;
+        box-shadow: 0 0 8px #aaaaaa; }
   .sideBar .collapsed_header {
     justify-content: center;
     margin-top: 5px; }

@@ -49,6 +49,7 @@
       padding-left: 10px !important;
       &.ant-menu-item-selected {
         background: #ededed !important;
+        box-shadow: 0 0 4px #aaaaaa;
         section {
           background: inherit !important;
           aside {
@@ -139,6 +140,10 @@
             line-height: 1;
           }
         }
+      }
+      &:hover{
+        transition: box-shadow 0.2s;
+        box-shadow: 0 0 8px #aaaaaa;
       }
     }
   }

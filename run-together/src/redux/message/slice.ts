@@ -3,7 +3,7 @@ import { ISideBarChatroomList, IUser } from "../../interface";
 import { useAppSelector } from "../app/hooks";
 import { sideBarChatroomListReducer } from "./Reducers";
 
-const _initialUserState: IUser = {
+const _initialParticipantState: IUser = {
   id: -1,
   name: "initial user name",
   avatarUrl: "initial user avatarUrl",
@@ -14,13 +14,13 @@ const _initialState: ISideBarChatroomList = {
   list: [
     {
       id: "initial id",
-      participant: _initialUserState,
+      participant: _initialParticipantState,
       unreadMessageCount: 0,
     },
   ],
 };
 
-export const sideBarChatRoomListSlice = createSlice({
+const sideBarChatRoomListSlice = createSlice({
   name: "sideBarChatRoomListSlice",
   initialState: _initialState,
   reducers: sideBarChatroomListReducer,
