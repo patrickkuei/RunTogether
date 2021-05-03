@@ -77,7 +77,12 @@ const addTempMessage = (
     (sideBarChatroom: ISideBarChatroom) => {
       const newSideBarChatroom = { ...sideBarChatroom };
       if (newSideBarChatroom.participant.id === currentParticipant.id) {
-        newSideBarChatroom.tempMessages?.push(newMessage);
+        if (newSideBarChatroom.tempMessages !== undefined) {
+          newSideBarChatroom.tempMessages = [
+            ...newSideBarChatroom.tempMessages,
+            newMessage,
+          ];
+        }
       }
       return newSideBarChatroom;
     }
