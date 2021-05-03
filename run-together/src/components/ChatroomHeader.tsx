@@ -24,7 +24,7 @@ export default function ChatroomHeader({ chatroom }: ChatroomHeaderProps) {
       >
         <div style={{ margin: "0 12px" }}>{chatroom.currentUser.name}</div>
         {chatroom.currentUser.avatarUrl === "initial user avatar url" ? (
-          <div></div>
+          <></>
         ) : (
           <Image
             width={50}

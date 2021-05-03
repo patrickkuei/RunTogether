@@ -24,7 +24,7 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
     <Content className="message-list-container">
       {chatroom.chatroomMessages !== undefined ? (
         chatroom.chatroomMessages[0].id === "initial id" ? (
-          <div></div>
+          <></>
         ) : (
           <div className="site-layout-background">
             {chatroom.chatroomMessages.map((message) => (
@@ -37,7 +37,7 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
                 }
               >
                 {message.senderId === 0 ? (
-                  <div></div>
+                  <></>
                 ) : (
                   <div className="avatar">
                     <Image
@@ -61,7 +61,7 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
           </div>
         )
       ) : (
-        <div></div>
+        <></>
       )}
       <div className="divForAutoScroll" ref={bottomDiv}></div>
     </Content>
