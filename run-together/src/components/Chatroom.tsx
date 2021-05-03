@@ -16,7 +16,7 @@ export default function Chatroom() {
         <ChatroomHeader chatroom={chatroom} />
       </Header>
       <ChatroomMessageList chatroom={chatroom} />
-      <ChatroomInput />
+      <ChatroomInput chatroom={chatroom} />
     </Layout>
   );
 }

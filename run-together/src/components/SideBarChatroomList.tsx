@@ -6,8 +6,13 @@ import {
   useSideBarChatroomList,
 } from "../redux/sidebarChatroomList/slice";
 import { useAppDispatch } from "../redux/app/hooks";
-import { IChatroom, ISideBarChatroom, IUser } from "../interface";
-import { getRandomChatroom } from "../mock/GetRandomChatroom";
+import {
+  IChatroom,
+  IChatroomMessage,
+  ISideBarChatroom,
+  IUser,
+} from "../interface";
+import { getRandomSideBarChatroom } from "../mock/GetRandomSideBarChatroom";
 import { chatroomActions } from "../redux/chatroom/slice";
 import { getRandomMessages } from "../mock/GetRandomMessages";
 
@@ -20,42 +25,65 @@ export default function SideBarChatroomList({
 }: SideBarChatroomListProps) {
   const sideBarChatroomList = useSideBarChatroomList();
   const dispatch = useAppDispatch();
-  const { updateList, resetUnreadCountById } = sideBarChatroomListActions;
+  const {
+    updateSideBarChatroomList,
+    resetUnreadCountById,
+    updateTempMessagesByParticipant,
+  } = sideBarChatroomListActions;
   const { updateChatroom } = chatroomActions;
-  const newSideBarChatroomList: ISideBarChatroom[] = [];
 
   // mock fatching data
+  const _newSideBarChatroomList: ISideBarChatroom[] = [];
   const updateSideBarChatroom = () => {
     for (let i = 0; i < 5; i++) {
-      newSideBarChatroomList.push(getRandomChatroom());
+      _newSideBarChatroomList.push(getRandomSideBarChatroom());
     }
-    dispatch(updateList(newSideBarChatroomList));
+    dispatch(updateSideBarChatroomList(_newSideBarChatroomList));
   };
 
   useEffect(() => {
     updateSideBarChatroom();
   }, []);
 
-  // mock fatching data
-  const getChatroomByParticipant = (participent: IUser): IChatroom => {
-    const newRandomMessages = getRandomMessages(participent.id);
+  // mock fatching data: if sideBarChatroom.tempMessage exist, then use it without fetch
+  const getMessages = (
+    sideBarChatroom: ISideBarChatroom
+  ): IChatroomMessage[] => {
+    if (sideBarChatroom.tempMessages === undefined) {
+      const newMessages: IChatroomMessage[] = getRandomMessages(
+        sideBarChatroom.participant.id
+      );
+      dispatch(
+        updateTempMessagesByParticipant({
+          participant: sideBarChatroom.participant,
+          newMessages,
+        })
+      );
+      return newMessages;
+    } else {
+      return sideBarChatroom.tempMessages;
+    }
+  };
+
+  const getNewChatroom = (sideBarChatroom: ISideBarChatroom): IChatroom => {
     const currentUser: IUser = {
       id: 0,
       name: "YOU",
       avatarUrl: "/userImg.jpg",
     };
-    return {
+    const newChatroom: IChatroom = {
       isloading: false,
-      currentParticipant: participent,
+      currentParticipant: sideBarChatroom.participant,
       currentUser,
-      chatroomMessages: newRandomMessages,
+      chatroomMessages: getMessages(sideBarChatroom),
     };
+    return newChatroom;
   };
 
   const handleSideBarChatroomClick = (sideBarChatroom: ISideBarChatroom) => {
-    const { id, participant } = sideBarChatroom;
+    const { id } = sideBarChatroom;
     dispatch(resetUnreadCountById(id));
-    dispatch(updateChatroom(getChatroomByParticipant(participant)));
+    dispatch(updateChatroom(getNewChatroom(sideBarChatroom)));
   };
 
   return sideBarChatroomList.isLoading ? (

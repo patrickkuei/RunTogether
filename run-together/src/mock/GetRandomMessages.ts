@@ -17,7 +17,7 @@ const getRandomMessage = (senderId: number): IChatroomMessage => {
 
 export const getRandomMessages = (senderId: number): IChatroomMessage[] => {
   const newMessages: IChatroomMessage[] = []
-  for(let i = 0; i < 50; i++){
+  for(let i = 0; i < 500; i++){
     newMessages.push(getRandomMessage(senderId))
   }
   return newMessages;

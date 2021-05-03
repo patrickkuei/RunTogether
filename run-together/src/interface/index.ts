@@ -1,5 +1,3 @@
-import { FunctionComponent } from "react";
-
 export interface ISideBarChatroomList {
   isLoading: boolean;
   list: ISideBarChatroom[];
@@ -7,6 +5,7 @@ export interface ISideBarChatroomList {
 export interface ISideBarChatroom {
   id: string;
   participant: IUser;
+  tempMessages?: IChatroomMessage[];
   latestMessage?: ILatestMessage;
   unreadMessageCount: number;
 }

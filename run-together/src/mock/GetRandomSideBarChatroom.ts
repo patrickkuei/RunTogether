@@ -27,7 +27,7 @@ const getRandomParticipant = (): IUser => {
   };
 };
 
-export const getRandomChatroom = (): ISideBarChatroom => ({
+export const getRandomSideBarChatroom = (): ISideBarChatroom => ({
   id: uuidv4(),
   participant: getRandomParticipant(),
   latestMessage: {
