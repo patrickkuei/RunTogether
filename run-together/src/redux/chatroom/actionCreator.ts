@@ -12,14 +12,14 @@ const addMessage = (
 ): IChatroom => {
   const newChatroom: IChatroom = {
     ...prevState,
-    chatroomMessages: [
-      ...prevState.chatroomMessages,
-      action.payload
-    ]
-  }
+    chatroomMessages:
+      prevState.chatroomMessages !== undefined
+        ? [...prevState.chatroomMessages, action.payload]
+        : [action.payload],
+  };
   return newChatroom;
 };
 
-const actions = { updateChatroom, addMessage }
+const actions = { updateChatroom, addMessage };
 
-export default actions ;
+export default actions;

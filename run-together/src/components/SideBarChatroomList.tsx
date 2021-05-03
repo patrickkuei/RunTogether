@@ -48,9 +48,9 @@ export default function SideBarChatroomList({
   // mock fatching data: if sideBarChatroom.tempMessage exist, then use it without fetch
   const getMessages = (
     sideBarChatroom: ISideBarChatroom
-  ): IChatroomMessage[] => {
+  ): IChatroomMessage[] | undefined => {
     if (sideBarChatroom.tempMessages === undefined) {
-      const newMessages: IChatroomMessage[] = getRandomMessages(
+      const newMessages: IChatroomMessage[] | undefined = getRandomMessages(
         sideBarChatroom.participant.id
       );
       dispatch(

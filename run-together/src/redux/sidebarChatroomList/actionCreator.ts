@@ -5,6 +5,7 @@ import {
   ISideBarChatroom,
   IChatroomMessage,
   IUser,
+  ILatestMessage,
 } from "../../interface";
 
 const updateSideBarChatroomList = (
@@ -38,9 +39,19 @@ const resetUnreadCountById = (
   };
 };
 
+const getLatestMessage = (
+  message: IChatroomMessage
+): ILatestMessage | undefined => {
+  const latestMessage = message;
+  return {
+    ...latestMessage,
+    preview: latestMessage?.message,
+  };
+};
+
 interface updateTempMessagesProps {
   participant: IUser;
-  newMessages: IChatroomMessage[];
+  newMessages: IChatroomMessage[] | undefined;
 }
 
 const updateTempMessagesByParticipant = (
@@ -48,19 +59,25 @@ const updateTempMessagesByParticipant = (
   action: PayloadAction<updateTempMessagesProps>
 ): ISideBarChatroomList => {
   const { participant, newMessages } = action.payload;
-  const newSideBarChatroomList: ISideBarChatroom[] = prevState.list.map(
-    (sideBarChatroom: ISideBarChatroom): ISideBarChatroom => {
-      const newSideBarChatroom = { ...sideBarChatroom };
-      if (newSideBarChatroom.participant.id === participant.id) {
-        newSideBarChatroom.tempMessages = newMessages;
+  if (newMessages !== undefined) {
+    const newSideBarChatroomList: ISideBarChatroom[] = prevState.list.map(
+      (sideBarChatroom: ISideBarChatroom): ISideBarChatroom => {
+        const newSideBarChatroom = { ...sideBarChatroom };
+        if (newSideBarChatroom.participant.id === participant.id) {
+          newSideBarChatroom.tempMessages = newMessages;
+          newSideBarChatroom.latestMessage = getLatestMessage(
+            newMessages[newMessages.length - 1]
+          );
+        }
+        return newSideBarChatroom;
       }
-      return newSideBarChatroom;
-    }
-  );
-  return {
-    isLoading: false,
-    list: newSideBarChatroomList,
-  };
+    );
+    return {
+      isLoading: false,
+      list: newSideBarChatroomList,
+    };
+  }
+  return prevState;
 };
 
 interface addTempMessageProp {
@@ -83,11 +100,11 @@ const addTempMessage = (
             newMessage,
           ];
         }
+        newSideBarChatroom.latestMessage = getLatestMessage(newMessage);
       }
       return newSideBarChatroom;
     }
   );
-
   return {
     isLoading: false,
     list: newSideBarChatroomList,

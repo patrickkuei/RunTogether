@@ -23,16 +23,18 @@ export default function ChatroomInput({ chatroom }: ChatroomInputProps) {
 
   const handleFormSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
-    const newMessage: IChatroomMessage = {
-      id: uuidv4(),
-      type: MessageType.Text,
-      senderId: 0,
-      message: inputValue,
-      createdAt: new Date().getTime(),
-    };
-    dispatch(addMessage(newMessage));
-    dispatch(addTempMessage({ currentParticipant, newMessage }));
-    setInputValue("");
+    if (inputValue !== "") {
+      const newMessage: IChatroomMessage = {
+        id: uuidv4(),
+        type: MessageType.Text,
+        senderId: 0,
+        message: inputValue,
+        createdAt: new Date().getTime(),
+      };
+      dispatch(addMessage(newMessage));
+      dispatch(addTempMessage({ currentParticipant, newMessage }));
+      setInputValue("");
+    }
   };
 
   return (

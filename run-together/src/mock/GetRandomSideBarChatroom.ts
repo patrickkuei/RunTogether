@@ -30,12 +30,5 @@ const getRandomParticipant = (): IUser => {
 export const getRandomSideBarChatroom = (): ISideBarChatroom => ({
   id: uuidv4(),
   participant: getRandomParticipant(),
-  latestMessage: {
-    id: uuidv4(),
-    type: MessageType.Text,
-    senderId: Math.floor(Math.random() * 50),
-    preview: "message",
-    createdAt: new Date().getTime(),
-  },
   unreadMessageCount: Math.floor(Math.random() * 1000),
 });
