@@ -17,6 +17,12 @@ const SideBarChatroom: React.FC<Props> = ({ sideBarChatroom, collapsed }) => {
     latestMessage ?? {};
   const [isCollapsed, setIsCollapsed] = useState(false);
 
+  const visibledPreview = preview
+    ? preview.length < 30
+      ? preview
+      : `${preview?.substring(0, 30)}...`
+    : "";
+
   const getUTCTime = (createdAt: number | undefined): string => {
     if (createdAt) {
       const _time = new Date();
@@ -72,7 +78,9 @@ const SideBarChatroom: React.FC<Props> = ({ sideBarChatroom, collapsed }) => {
           <Text className="latest-message-time">{getUTCTime(createdAt)}</Text>
         </Header>
         <Content className="sideBar-chatroom_latest-message-container">
-          <Text>{senderId === 0 ? `you: ${preview}` : preview}</Text>
+          <Text>
+            {senderId === 0 ? `you: ${visibledPreview}` : visibledPreview}
+          </Text>
         </Content>
       </Layout>
       {unreadMessageCount > 0 ? (
