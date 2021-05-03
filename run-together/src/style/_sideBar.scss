@@ -11,6 +11,7 @@
     padding: 0 !important;
     .header-logo {
       cursor: default;
+      user-select: none;
     }
     .logo-container {
       margin: 10px 15px 0 30px;
@@ -43,6 +44,7 @@
     max-height: 80%;
     overflow-y: overlay;
     overflow-x: hidden;
+    user-select: none;
     .sidebar-chatroom-container {
       overflow: visible !important;
       height: 60px !important;
@@ -141,7 +143,7 @@
           }
         }
       }
-      &:hover{
+      &:hover {
         transition: box-shadow 0.2s;
         box-shadow: 0 0 8px #aaaaaa;
       }
