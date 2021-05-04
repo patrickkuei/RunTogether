@@ -35,7 +35,8 @@ export default function SideBarChatroomList({
   // mock fatching data
   const _newSideBarChatroomList: ISideBarChatroom[] = [];
   const updateSideBarChatroom = () => {
-    for (let i = 0; i < 5; i++) {
+    const numberOfSideBarChatroom = Math.floor(Math.random() * 10);
+    for (let i = 0; i < numberOfSideBarChatroom; i++) {
       _newSideBarChatroomList.push(getRandomSideBarChatroom());
     }
     dispatch(updateSideBarChatroomList(_newSideBarChatroomList));

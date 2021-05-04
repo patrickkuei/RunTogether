@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Layout } from "antd";
+import { Button, Layout } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
+import Picker, { IEmojiData } from "emoji-picker-react";
 import { useAppDispatch } from "../redux/app/hooks";
 import { chatroomActions } from "../redux/chatroom/slice";
 import { IChatroom, IChatroomMessage, MessageType } from "../interface";
@@ -16,6 +18,7 @@ export default function ChatroomInput({ chatroom }: ChatroomInputProps) {
   const { addMessage } = chatroomActions;
   const { addTempMessage } = sideBarChatroomListActions;
   const { currentParticipant } = chatroom;
+  const [isEmojiPickerVisibled, setIsEmojiPickerVisibled] = useState(false);
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
@@ -36,12 +39,53 @@ export default function ChatroomInput({ chatroom }: ChatroomInputProps) {
       setInputValue("");
     }
   };
+  const onEmojiClick = (
+    event: React.MouseEvent,
+    emojiObject: IEmojiData
+  ): void => {
+    setInputValue((prev) => prev + emojiObject.emoji);
+  };
+
+  const toggleEmojiPickerVisibled = (): void => {
+    setIsEmojiPickerVisibled((prev) => !prev);
+  };
+
+  const handleInputFocused = (): void => {
+    if (isEmojiPickerVisibled) {
+      setIsEmojiPickerVisibled(false);
+    }
+  };
 
   return (
-    <Footer>
-      <form onSubmit={handleFormSubmit}>
-        <input value={inputValue} onChange={handleInputChange} />
+    <Footer style={{ display: "flex" }}>
+      <form style={{ flex: 1 }} onSubmit={handleFormSubmit}>
+        <input
+          onFocus={handleInputFocused}
+          value={inputValue}
+          onChange={handleInputChange}
+        />
       </form>
+      <div
+        style={{
+          maxWidth: 50,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Button
+          onClick={toggleEmojiPickerVisibled}
+          shape="circle"
+          icon={<SmileOutlined />}
+        />
+      </div>
+      {isEmojiPickerVisibled ? (
+        <div style={{ position: "absolute", bottom: 53, right: 0 }}>
+          <Picker onEmojiClick={onEmojiClick} />
+        </div>
+      ) : (
+        <></>
+      )}
     </Footer>
   );
 }

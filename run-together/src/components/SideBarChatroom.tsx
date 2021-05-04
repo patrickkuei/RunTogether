@@ -12,9 +12,8 @@ interface Props {
 const SideBarChatroom: React.FC<Props> = ({ sideBarChatroom, collapsed }) => {
   const { Text } = Typography;
   const { participant, latestMessage, unreadMessageCount } = sideBarChatroom;
-  const { id: participantId, name, avatarUrl } = participant;
-  const { id: latestMessageId, type, senderId, preview, createdAt } =
-    latestMessage ?? {};
+  const { name, avatarUrl } = participant;
+  const { senderId, preview, createdAt } = latestMessage ?? {};
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const visibledPreview = preview

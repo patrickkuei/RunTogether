@@ -10,7 +10,8 @@
     font-size: 20px;
     padding: 0 !important; }
     .sideBar .sideBar_header .header-logo {
-      cursor: default; }
+      cursor: default;
+      user-select: none; }
     .sideBar .sideBar_header .logo-container {
       margin: 10px 15px 0 30px; }
     .sideBar .sideBar_header .logo-icon {
@@ -33,7 +34,8 @@
   .sideBar .ant-menu-root {
     max-height: 80%;
     overflow-y: overlay;
-    overflow-x: hidden; }
+    overflow-x: hidden;
+    user-select: none; }
     .sideBar .ant-menu-root .sidebar-chatroom-container {
       overflow: visible !important;
       height: 60px !important;
@@ -155,7 +157,25 @@
       color: #002140; }
 
 .site-layout .header-background {
-  background: #ffffff; }
+  background: #ffffff;
+  user-select: none; }
+  .site-layout .header-background .chatroom-header-container {
+    display: flex;
+    flex-direction: row; }
+    .site-layout .header-background .chatroom-header-container .chatroom-header-participant {
+      text-align: center;
+      flex: 0.8; }
+    .site-layout .header-background .chatroom-header-container .chatroom-header-user-container {
+      text-align: center;
+      flex: 0.2;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
+      .site-layout .header-background .chatroom-header-container .chatroom-header-user-container .user {
+        margin: 0 12px; }
+      .site-layout .header-background .chatroom-header-container .chatroom-header-user-container .user-img {
+        border-radius: 25; }
 
 .site-layout .message-list-container {
   overflow: hidden scroll; }
@@ -180,7 +200,7 @@
         border-radius: 16px;
         color: #ffffff; }
         .site-layout .message-list-container .site-layout-background .message-container .message.user {
-          background: #ffffff;
+          background: #f1f8e9;
           padding: 8px;
           border-radius: 16px;
           color: #000000; }

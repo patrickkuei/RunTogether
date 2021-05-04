@@ -10,8 +10,8 @@ export default function SideBar() {
   const [collapsed, setCollapsed] = useState(false);
 
   const handleSearchIconClick = (): void => {
-    setCollapsed(prev => !prev);
-  }
+    setCollapsed((prev) => !prev);
+  };
 
   const onCollapse = (collapsed: boolean) => {
     setCollapsed(collapsed);
@@ -24,10 +24,17 @@ export default function SideBar() {
       onCollapse={onCollapse}
       width={350}
     >
-      <Header className={collapsed ?"sideBar_header collapsed_header" :"sideBar_header"}>
+      <Header
+        className={
+          collapsed ? "sideBar_header collapsed_header" : "sideBar_header"
+        }
+      >
         <SideBarHeader collapsed={collapsed} />
       </Header>
-      <SideBarSearchBar collapsed={collapsed} handleSearchIconClick={handleSearchIconClick}  />
+      <SideBarSearchBar
+        collapsed={collapsed}
+        handleSearchIconClick={handleSearchIconClick}
+      />
       <SideBarChatroomList collapsed={collapsed} />
     </Sider>
   );
