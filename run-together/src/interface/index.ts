@@ -1,5 +1,4 @@
 export interface ISideBarChatroomList {
-  isLoading: boolean;
   list: ISideBarChatroom[];
 }
 export interface ISideBarChatroom {
@@ -32,7 +31,6 @@ export interface IUser {
 }
 
 export interface IChatroom {
-  isloading: boolean;
   currentParticipant: IUser;
   currentUser: IUser;
   chatroomMessages?: IChatroomMessage[];

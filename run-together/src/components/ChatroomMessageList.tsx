@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Layout, Image } from "antd";
 import { IChatroom } from "../interface";
 const { Content } = Layout;
@@ -9,7 +9,7 @@ type MessageListProps = {
 
 export default function ChatroomMessageList({ chatroom }: MessageListProps) {
   const avatarUrl = chatroom ? chatroom.currentParticipant.avatarUrl : "";
-
+  const [isLoading, setIsLoading] = useState(false);
   const bottomDiv = useRef<null | HTMLDivElement>(null);
 
   const scrollToBottom = (): void => {
@@ -22,7 +22,9 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
 
   return (
     <Content className="message-list-container">
-      {chatroom && chatroom.chatroomMessages !== undefined ? (
+      {isLoading ? (
+        <div>Loading... </div>
+      ) : chatroom && chatroom.chatroomMessages !== undefined ? (
         <div className="site-layout-background">
           {chatroom.chatroomMessages.map((message) => (
             <div

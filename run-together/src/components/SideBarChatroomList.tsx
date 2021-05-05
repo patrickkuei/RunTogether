@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu } from "antd";
 import SideBarChatroom from "./SideBarChatroom";
 import {
@@ -32,9 +32,12 @@ export default function SideBarChatroomList({
   } = sideBarChatroomListActions;
   const { updateChatroom } = chatroomActions;
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const fetchSideBarChatroom = () => {
     const newSideBarChatroomList: ISideBarChatroom[] = sideBarChatroomAPIs.getSideBarChatroomList();
     dispatch(updateSideBarChatroomList(newSideBarChatroomList));
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -70,7 +73,6 @@ export default function SideBarChatroomList({
       avatarUrl: "/userImg.jpg",
     };
     const newChatroom: IChatroom = {
-      isloading: false,
       currentParticipant: sideBarChatroom.participant,
       currentUser,
       chatroomMessages: getMessages(sideBarChatroom),
@@ -84,23 +86,24 @@ export default function SideBarChatroomList({
     dispatch(updateChatroom(getCurrentChatroom(sideBarChatroom)));
   };
 
-  return sideBarChatroomList.isLoading ? (
+  return isLoading ? (
     <div>loading...</div>
   ) : (
     <Menu theme="light" mode="inline">
-      {sideBarChatroomList.list.map((sideBarChatroom) => (
-        <Menu.Item
-          onClick={() => handleSideBarChatroomClick(sideBarChatroom)}
-          key={sideBarChatroom.id}
-          className="sidebar-chatroom-container"
-          title={sideBarChatroom.latestMessage?.preview}
-        >
-          <SideBarChatroom
-            sideBarChatroom={sideBarChatroom}
-            collapsed={collapsed}
-          />
-        </Menu.Item>
-      ))}
+      {sideBarChatroomList &&
+        sideBarChatroomList.list.map((sideBarChatroom) => (
+          <Menu.Item
+            onClick={() => handleSideBarChatroomClick(sideBarChatroom)}
+            key={sideBarChatroom.id}
+            className="sidebar-chatroom-container"
+            title={sideBarChatroom.latestMessage?.preview}
+          >
+            <SideBarChatroom
+              sideBarChatroom={sideBarChatroom}
+              collapsed={collapsed}
+            />
+          </Menu.Item>
+        ))}
     </Menu>
   );
 }

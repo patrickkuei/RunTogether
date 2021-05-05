@@ -1,28 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ISideBarChatroomList, IUser } from "../../interface";
+import { ISideBarChatroomList } from "../../interface";
 import { useAppSelector } from "../app/hooks";
 import { sideBarChatroomListReducer } from "./Reducers";
 
-const _initialParticipantState: IUser = {
-  id: -1,
-  name: "initial user name",
-  avatarUrl: "initial user avatarUrl",
-};
-
-const _initialState: ISideBarChatroomList = {
-  isLoading: true,
-  list: [
-    {
-      id: "initial id",
-      participant: _initialParticipantState,
-      unreadMessageCount: 0,
-    },
-  ],
-};
+const initialState: ISideBarChatroomList | null = null;
 
 const sideBarChatRoomListSlice = createSlice({
   name: "sideBarChatRoomListSlice",
-  initialState: _initialState,
+  initialState,
   reducers: sideBarChatroomListReducer,
 });
 
