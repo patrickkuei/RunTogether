@@ -1,5 +1,9 @@
 # RunTogether
 
+Meet for running chat room developed in response to a healthier society
+
+demo: https://patrickkuei.github.io/RunTogether/
+
 - Tech
   - React 17.0.2
   - React Redux 7.2.3 -with toolkit
