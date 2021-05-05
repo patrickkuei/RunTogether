@@ -12,9 +12,9 @@ import {
   ISideBarChatroom,
   IUser,
 } from "../interface";
-import { getRandomSideBarChatroom } from "../mock/GetRandomSideBarChatroom";
 import { chatroomActions } from "../redux/chatroom/slice";
-import { getRandomMessages } from "../mock/GetRandomMessages";
+import { sideBarChatroomAPIs } from "../api/sideBarChatroomAPIs";
+import { chatroomAPIs } from "../api/chatroomAPIs";
 
 type SideBarChatroomListProps = {
   collapsed: boolean;
@@ -32,26 +32,23 @@ export default function SideBarChatroomList({
   } = sideBarChatroomListActions;
   const { updateChatroom } = chatroomActions;
 
-  // mock fatching data
-  const _newSideBarChatroomList: ISideBarChatroom[] = [];
   const updateSideBarChatroom = () => {
-    const numberOfSideBarChatroom = Math.floor(Math.random() * 10);
-    for (let i = 0; i < numberOfSideBarChatroom; i++) {
-      _newSideBarChatroomList.push(getRandomSideBarChatroom());
-    }
-    dispatch(updateSideBarChatroomList(_newSideBarChatroomList));
+    const newSideBarChatroomList: ISideBarChatroom[] = sideBarChatroomAPIs.getSideBarChatroomList();
+    dispatch(updateSideBarChatroomList(newSideBarChatroomList));
   };
 
   useEffect(() => {
     updateSideBarChatroom();
   }, []);
 
-  // mock fatching data: if sideBarChatroom.tempMessage exist, then use it without fetch
+  // if sideBarChatroom.tempMessage exist, use it without fetch
   const getMessages = (
     sideBarChatroom: ISideBarChatroom
   ): IChatroomMessage[] | undefined => {
     if (sideBarChatroom.tempMessages === undefined) {
-      const newMessages: IChatroomMessage[] | undefined = getRandomMessages(
+      const newMessages:
+        | IChatroomMessage[]
+        | undefined = chatroomAPIs.getChatroomMessages(
         sideBarChatroom.participant.id
       );
       dispatch(
