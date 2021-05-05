@@ -2,22 +2,24 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { IChatroom, IChatroomMessage } from "../../interface";
 
 const updateChatroom = (
-  prevState: IChatroom,
+  prevState: IChatroom | null,
   action: PayloadAction<IChatroom>
 ): IChatroom => action.payload;
 
 const addMessage = (
-  prevState: IChatroom,
+  prevState: IChatroom | null,
   action: PayloadAction<IChatroomMessage>
-): IChatroom => {
-  const newChatroom: IChatroom = {
-    ...prevState,
-    chatroomMessages:
-      prevState.chatroomMessages !== undefined
-        ? [...prevState.chatroomMessages, action.payload]
-        : [action.payload],
-  };
-  return newChatroom;
+): IChatroom | void => {
+  if (prevState !== null) {
+    const newChatroom: IChatroom = {
+      ...prevState,
+      chatroomMessages:
+        prevState.chatroomMessages !== undefined
+          ? [...prevState.chatroomMessages, action.payload]
+          : [action.payload],
+    };
+    return newChatroom;
+  }
 };
 
 const actions = { updateChatroom, addMessage };

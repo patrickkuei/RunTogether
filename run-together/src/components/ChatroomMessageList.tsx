@@ -4,11 +4,11 @@ import { IChatroom } from "../interface";
 const { Content } = Layout;
 
 type MessageListProps = {
-  chatroom: IChatroom;
+  chatroom: IChatroom | null;
 };
 
 export default function ChatroomMessageList({ chatroom }: MessageListProps) {
-  const { avatarUrl } = chatroom.currentParticipant;
+  const avatarUrl = chatroom ? chatroom.currentParticipant.avatarUrl : "";
 
   const bottomDiv = useRef<null | HTMLDivElement>(null);
 
@@ -22,44 +22,38 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
 
   return (
     <Content className="message-list-container">
-      {chatroom.chatroomMessages !== undefined ? (
-        chatroom.chatroomMessages[0].id === "initial id" ? (
-          <></>
-        ) : (
-          <div className="site-layout-background">
-            {chatroom.chatroomMessages.map((message) => (
-              <div
-                key={message.id}
-                className={
-                  message.senderId === 0
-                    ? "message-container user"
-                    : "message-container"
-                }
-              >
-                {message.senderId === 0 ? (
-                  <></>
-                ) : (
-                  <div className="avatar">
-                    <Image
-                      src={avatarUrl}
-                      width={30}
-                      height={30}
-                      preview={false}
-                    />
-                  </div>
-                )}
-
-                <div
-                  className={
-                    message.senderId === 0 ? "message user" : "message"
-                  }
-                >
-                  {message.message}
+      {chatroom && chatroom.chatroomMessages !== undefined ? (
+        <div className="site-layout-background">
+          {chatroom.chatroomMessages.map((message) => (
+            <div
+              key={message.id}
+              className={
+                message.senderId === 0
+                  ? "message-container user"
+                  : "message-container"
+              }
+            >
+              {message.senderId === 0 ? (
+                <></>
+              ) : (
+                <div className="avatar">
+                  <Image
+                    src={avatarUrl}
+                    width={30}
+                    height={30}
+                    preview={false}
+                  />
                 </div>
+              )}
+
+              <div
+                className={message.senderId === 0 ? "message user" : "message"}
+              >
+                {message.message}
               </div>
-            ))}
-          </div>
-        )
+            </div>
+          ))}
+        </div>
       ) : (
         <></>
       )}

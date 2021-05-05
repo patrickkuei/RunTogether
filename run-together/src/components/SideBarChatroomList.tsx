@@ -32,13 +32,13 @@ export default function SideBarChatroomList({
   } = sideBarChatroomListActions;
   const { updateChatroom } = chatroomActions;
 
-  const updateSideBarChatroom = () => {
+  const fetchSideBarChatroom = () => {
     const newSideBarChatroomList: ISideBarChatroom[] = sideBarChatroomAPIs.getSideBarChatroomList();
     dispatch(updateSideBarChatroomList(newSideBarChatroomList));
   };
 
   useEffect(() => {
-    updateSideBarChatroom();
+    fetchSideBarChatroom();
   }, []);
 
   // if sideBarChatroom.tempMessage exist, use it without fetch
@@ -63,7 +63,7 @@ export default function SideBarChatroomList({
     }
   };
 
-  const getNewChatroom = (sideBarChatroom: ISideBarChatroom): IChatroom => {
+  const getCurrentChatroom = (sideBarChatroom: ISideBarChatroom): IChatroom => {
     const currentUser: IUser = {
       id: 0,
       name: "YOU",
@@ -81,7 +81,7 @@ export default function SideBarChatroomList({
   const handleSideBarChatroomClick = (sideBarChatroom: ISideBarChatroom) => {
     const { id } = sideBarChatroom;
     dispatch(resetUnreadCountById(id));
-    dispatch(updateChatroom(getNewChatroom(sideBarChatroom)));
+    dispatch(updateChatroom(getCurrentChatroom(sideBarChatroom)));
   };
 
   return sideBarChatroomList.isLoading ? (

@@ -1,45 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Chatroom from "../../components/Chatroom";
-import {
-  IChatroom,
-  IChatroomMessage,
-  IUser,
-  MessageType,
-} from "../../interface";
+
+import { IChatroom } from "../../interface";
 import { useAppSelector } from "../app/hooks";
 import { chatroomReducer } from "./Reducers";
 
-const _initialUserState: IUser = {
-  id: -1,
-  name: "",
-  avatarUrl: "initial user avatar url",
-};
-const _initialParticipantState: IUser = {
-  id: -1,
-  name: "",
-  avatarUrl: "initial participant avatarUrl",
-};
-
-const _initialChatroomMessages: IChatroomMessage[] = [
-  {
-    id: "initial id",
-    type: MessageType.Text,
-    senderId: 1,
-    message: "",
-    createdAt: 0,
-  },
-];
-
-const _initialState: IChatroom = {
-  isloading: false,
-  currentParticipant: _initialParticipantState,
-  currentUser: _initialUserState,
-  chatroomMessages: _initialChatroomMessages,
-};
+const initialState: IChatroom | null = null;
 
 export const chatroomSlice = createSlice({
   name: "chatroomSlice",
-  initialState: _initialState,
+  initialState,
   reducers: chatroomReducer,
 });
 

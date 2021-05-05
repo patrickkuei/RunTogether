@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Layout } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
@@ -19,6 +19,7 @@ export default function ChatroomInput({ chatroom }: ChatroomInputProps) {
   const { addTempMessage } = sideBarChatroomListActions;
   const { currentParticipant } = chatroom;
   const [isEmojiPickerVisibled, setIsEmojiPickerVisibled] = useState(false);
+  const inputRef = useRef<null | HTMLInputElement>(null);
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
@@ -56,6 +57,13 @@ export default function ChatroomInput({ chatroom }: ChatroomInputProps) {
     }
   };
 
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.value = "";
+      inputRef.current.focus();
+    }
+  }, [chatroom]);
+
   return (
     <Footer style={{ display: "flex" }}>
       <form style={{ flex: 1 }} onSubmit={handleFormSubmit}>
@@ -63,6 +71,7 @@ export default function ChatroomInput({ chatroom }: ChatroomInputProps) {
           onFocus={handleInputFocused}
           value={inputValue}
           onChange={handleInputChange}
+          ref={inputRef}
         />
       </form>
       <div
