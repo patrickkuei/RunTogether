@@ -22,6 +22,19 @@ const addMessage = (
   }
 };
 
-const actions = { updateChatroom, addMessage };
+const loadMore = (
+  prevState: IChatroom | null,
+  action: PayloadAction<IChatroomMessage[]>
+): IChatroom | void => {
+  if (prevState !== null && prevState.chatroomMessages !== undefined) {
+    const moreMessage = action.payload;
+    return {
+      ...prevState,
+      chatroomMessages: [...moreMessage, ...prevState.chatroomMessages],
+    };
+  }
+};
+
+const actions = { updateChatroom, addMessage, loadMore };
 
 export default actions;
