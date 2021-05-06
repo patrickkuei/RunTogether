@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Layout, Image } from "antd";
-import { IChatroom } from "../interface";
+import { Layout, Image, Button } from "antd";
+import { IChatroom, IChatroomMessage } from "../interface";
+import { getRandomMessages } from "../mock/GetRandomMessages";
 const { Content } = Layout;
 
 type MessageListProps = {
@@ -8,8 +9,10 @@ type MessageListProps = {
 };
 
 export default function ChatroomMessageList({ chatroom }: MessageListProps) {
+  const [visibleMessages, setVisibleMessages] = useState<
+    IChatroomMessage[] | undefined
+  >([]);
   const avatarUrl = chatroom ? chatroom.currentParticipant.avatarUrl : "";
-  const [isLoading, setIsLoading] = useState(false);
   const bottomDiv = useRef<null | HTMLDivElement>(null);
 
   const scrollToBottom = (): void => {
@@ -17,16 +20,41 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
   };
 
   useEffect(() => {
+    setVisibleMessages(chatroom?.chatroomMessages);
+  }, [chatroom?.chatroomMessages]);
+
+  useEffect(() => {
+    console.log(chatroom);
+
     scrollToBottom();
   }, [chatroom]);
 
+  const handleLoadMoreClick = (): void => {
+    if (chatroom) {
+      const moreMessages: IChatroomMessage[] | undefined = getRandomMessages(
+        chatroom.currentParticipant.id
+      );
+      setVisibleMessages((prev) => {
+        if (prev && moreMessages) {
+          return [...moreMessages, ...prev];
+        }
+      });
+    }
+  };
+
   return (
     <Content className="message-list-container">
-      {isLoading ? (
-        <div>Loading... </div>
-      ) : chatroom && chatroom.chatroomMessages !== undefined ? (
+      {chatroom && visibleMessages !== undefined ? (
         <div className="site-layout-background">
-          {chatroom.chatroomMessages.map((message) => (
+          <div
+            className="message-container"
+            style={{ justifyContent: "center" }}
+          >
+            <Button type="primary" shape="round" onClick={handleLoadMoreClick}>
+              load more
+            </Button>
+          </div>
+          {visibleMessages.map((message) => (
             <div
               key={message.id}
               className={
@@ -57,7 +85,7 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
           ))}
         </div>
       ) : (
-        <></>
+        <div>nothing</div>
       )}
       <div className="divForAutoScroll" ref={bottomDiv}></div>
     </Content>
