@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Layout, Image, Button } from "antd";
 import { IChatroom, IChatroomMessage } from "../interface";
 import { getRandomMessages } from "../mock/GetRandomMessages";
+import { chatroomActions } from "../redux/chatroom/slice";
+import { useAppDispatch } from "../redux/app/hooks";
 const { Content } = Layout;
 
 type MessageListProps = {
@@ -9,23 +11,15 @@ type MessageListProps = {
 };
 
 export default function ChatroomMessageList({ chatroom }: MessageListProps) {
-  const [visibleMessages, setVisibleMessages] = useState<
-    IChatroomMessage[] | undefined
-  >([]);
   const avatarUrl = chatroom ? chatroom.currentParticipant.avatarUrl : "";
   const bottomDiv = useRef<null | HTMLDivElement>(null);
-
   const scrollToBottom = (): void => {
     bottomDiv.current?.scrollIntoView({ behavior: "smooth" });
   };
+  const dispatch = useAppDispatch();
+  const { loadMore } = chatroomActions;
 
   useEffect(() => {
-    setVisibleMessages(chatroom?.chatroomMessages);
-  }, [chatroom?.chatroomMessages]);
-
-  useEffect(() => {
-    console.log(chatroom);
-
     scrollToBottom();
   }, [chatroom]);
 
@@ -34,17 +28,15 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
       const moreMessages: IChatroomMessage[] | undefined = getRandomMessages(
         chatroom.currentParticipant.id
       );
-      setVisibleMessages((prev) => {
-        if (prev && moreMessages) {
-          return [...moreMessages, ...prev];
-        }
-      });
+      if (moreMessages) {
+        dispatch(loadMore(moreMessages));
+      }
     }
   };
 
   return (
     <Content className="message-list-container">
-      {chatroom && visibleMessages !== undefined ? (
+      {chatroom && chatroom.chatroomMessages !== undefined ? (
         <div className="site-layout-background">
           <div
             className="message-container"
@@ -54,7 +46,7 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
               load more
             </Button>
           </div>
-          {visibleMessages.map((message) => (
+          {chatroom.chatroomMessages.map((message) => (
             <div
               key={message.id}
               className={
