@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Layout, Image, Button } from "antd";
+import { Layout, Image, Button, Empty } from "antd";
 import { IChatroom, IChatroomMessage } from "../interface";
 import { getRandomMessages } from "../mock/GetRandomMessages";
 import { chatroomActions } from "../redux/chatroom/slice";
@@ -77,7 +77,16 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
           ))}
         </div>
       ) : (
-        <div>nothing</div>
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Empty />
+        </div>
       )}
       <div className="divForAutoScroll" ref={bottomDiv}></div>
     </Content>
