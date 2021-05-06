@@ -175,7 +175,7 @@
       .site-layout .header-background .chatroom-header-container .chatroom-header-user-container .user {
         margin: 0 12px; }
       .site-layout .header-background .chatroom-header-container .chatroom-header-user-container .user-img {
-        border-radius: 25; }
+        border-radius: 25px; }
 
 .site-layout .message-list-container {
   overflow: hidden scroll; }

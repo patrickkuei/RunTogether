@@ -10,7 +10,9 @@ export default function ChatroomHeader({ chatroom }: ChatroomHeaderProps) {
   const currentUser: IUser = {
     id: 0,
     name: "you",
-    avatarUrl: "/userImg.jpg",
+    avatarUrl: `https://icotar.com/initials/${encodeURIComponent(
+      "Patrick Yang"
+    )}`,
   };
 
   return (
