@@ -1,4 +1,4 @@
-import "./style/css/index.css";
+import "./style/index.scss";
 import Main from "./components/Main";
 import { StoreProvider } from "./redux/store";
 
