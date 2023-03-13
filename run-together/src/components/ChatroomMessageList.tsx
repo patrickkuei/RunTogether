@@ -14,7 +14,9 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
   const avatarUrl = chatroom ? chatroom.currentParticipant.avatarUrl : "";
   const bottomDiv = useRef<null | HTMLDivElement>(null);
   const scrollToBottom = (): void => {
-    bottomDiv.current?.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      bottomDiv.current?.scrollIntoView({ behavior: "smooth" });
+    }, 0);
   };
   const dispatch = useAppDispatch();
   const { loadMore } = chatroomActions;
