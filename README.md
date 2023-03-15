@@ -1,5 +1,9 @@
 # RunTogether
 
+NEW FEATURE ONLINE!! 
+
+The app has a new and exciting feature - the chatGPT robot with GPT-3.5 API! This feature allows users to interact with a state-of-the-art natural language processing model that can carry out conversations, answer questions, and offer suggestions based on the user's inputs. The chatGPT robot feature brings a whole new level of interactivity and engagement to the app.
+
 An frontend-simulated instant communication app that allows users to type messages, choose emojis, and switch between chatrooms. The app also features an auto-scrolling functionality that automatically scrolls to the bottom of the chat window when switching chatrooms. Additionally, the app includes a sidebar that can be toggled to fit different window sizes.
 
 ## DEMO:
@@ -12,6 +16,8 @@ An frontend-simulated instant communication app that allows users to type messag
 - TypeScript 4.2.4
 - Ant Design
 - SCSS
+- openai 3.2.1
+- text-davinci-003
 
 ## Getting Started
 
@@ -22,9 +28,10 @@ An frontend-simulated instant communication app that allows users to type messag
 
 ## Features
 
-- User can type messages and choose emojis.
-- Messages are automatically scrolled to the bottom when switching between chatrooms.
-- Sidebar can be toggled to fit different window sizes.
+- Users can communicate instantly by typing messages and selecting from a range of emojis.
+- The app features an auto-scrolling functionality that seamlessly moves to the bottom of the chat window when switching between chatrooms.
+- A customizable sidebar allows for easy adjustment to fit different window sizes.
+- A chatGPT robot has been integrated into the app, providing an innovative and intelligent way for users to interact and engage with the application.
 
 ## License
 
