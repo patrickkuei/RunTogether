@@ -48,7 +48,7 @@ export default function SideBarChatroomList({
   const getMessages = (
     sideBarChatroom: ISideBarChatroom
   ): IChatroomMessage[] | undefined => {
-    if (sideBarChatroom.tempMessages === undefined) {
+    if (sideBarChatroom.tempMessages === undefined && sideBarChatroom.id !== '999') {
       const newMessages:
         | IChatroomMessage[]
         | undefined = chatroomAPIs.getChatroomMessages(

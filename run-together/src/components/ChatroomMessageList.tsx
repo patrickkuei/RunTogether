@@ -15,7 +15,9 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
   const bottomDiv = useRef<null | HTMLDivElement>(null);
   const scrollToBottom = (): void => {
     setTimeout(() => {
-      bottomDiv.current?.scrollIntoView({ behavior: "smooth" });
+      const child = bottomDiv.current?.lastChild as HTMLDivElement;
+
+      child?.scrollIntoView({ behavior: "smooth" });
     }, 0);
   };
   const dispatch = useAppDispatch();
@@ -23,7 +25,7 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
 
   useLayoutEffect(() => {
     scrollToBottom();
-  }, [chatroom?.currentParticipant.id]);
+  }, [chatroom?.currentParticipant.id, chatroom?.chatroomMessages]);
 
   const handleLoadMoreClick = (): void => {
     if (chatroom) {
@@ -39,15 +41,21 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
   return (
     <Content className="message-list-container">
       {chatroom && chatroom.chatroomMessages !== undefined ? (
-        <div className="site-layout-background">
-          <div
-            className="message-container"
-            style={{ justifyContent: "center" }}
-          >
-            <Button type="primary" shape="round" onClick={handleLoadMoreClick}>
-              load more
-            </Button>
-          </div>
+        <div ref={bottomDiv} className="site-layout-background">
+          {chatroom.currentParticipant.id === 999 ? null : (
+            <div
+              className="message-container"
+              style={{ justifyContent: "center" }}
+            >
+              <Button
+                type="primary"
+                shape="round"
+                onClick={handleLoadMoreClick}
+              >
+                load more
+              </Button>
+            </div>
+          )}
           {chatroom.chatroomMessages.map((message) => (
             <div
               key={message.id}
@@ -90,7 +98,6 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
           <Empty />
         </div>
       )}
-      <div className="divForAutoScroll" ref={bottomDiv}></div>
     </Content>
   );
 }

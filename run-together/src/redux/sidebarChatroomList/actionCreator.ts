@@ -14,7 +14,7 @@ const updateSideBarChatroomList = (
 ): ISideBarChatroomList => {
   const newList: Array<ISideBarChatroom> = action.payload;
   return {
-    list: newList,
+    list: [...prevState!.list, ...newList],
   };
 };
 

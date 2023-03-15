@@ -7,6 +7,7 @@ import { useAppDispatch } from "../redux/app/hooks";
 import { chatroomActions } from "../redux/chatroom/slice";
 import { IChatroom, IChatroomMessage, MessageType } from "../interface";
 import { sideBarChatroomListActions } from "../redux/sidebarChatroomList/slice";
+import useChatGPT from "../hooks/useChatGPT";
 const { Footer } = Layout;
 
 type ChatroomInputProps = {
@@ -21,13 +22,18 @@ export default function ChatroomInput({ chatroom }: ChatroomInputProps) {
   const [isEmojiPickerVisibled, setIsEmojiPickerVisibled] = useState(false);
   const inputRef = useRef<null | HTMLInputElement>(null);
 
+  const { updatePrompt } = useChatGPT(currentParticipant)
+
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
   };
 
   const handleFormSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
+
     if (inputValue !== "") {
+      updatePrompt(inputValue)
+
       const newMessage: IChatroomMessage = {
         id: uuidv4(),
         type: MessageType.Text,
@@ -35,6 +41,7 @@ export default function ChatroomInput({ chatroom }: ChatroomInputProps) {
         message: inputValue,
         createdAt: new Date().getTime(),
       };
+
       dispatch(addMessage(newMessage));
       dispatch(addTempMessage({ currentParticipant, newMessage }));
       setInputValue("");
