@@ -9,6 +9,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'run-together'
 
     steps:
       - name: Checkout Code
@@ -18,13 +21,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16.x'
-        working-directory: run-together
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
       - name: Install Dependencies
-        run: yarn install --cwd run-together/
+        run: yarn install
 
       - name: Build
-        run: yarn build --cwd run-together/
+        run: yarn build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v4
@@ -32,4 +36,4 @@ jobs:
           REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
         with:
           branch: gh-pages
-          folder: run-together/build
+          folder: build
