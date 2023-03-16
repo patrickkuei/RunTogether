@@ -34,4 +34,4 @@ jobs:
           REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
         with:
           branch: gh-pages
-          folder: build
+          folder: run-together/build
