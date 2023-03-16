@@ -7,7 +7,7 @@ import { chatroomActions } from "../redux/chatroom/slice";
 import { sideBarChatroomListActions } from "../redux/sidebarChatroomList/slice";
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
