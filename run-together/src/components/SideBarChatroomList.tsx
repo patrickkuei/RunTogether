@@ -89,7 +89,7 @@ export default function SideBarChatroomList({
   return isLoading ? (
     <div>loading...</div>
   ) : (
-    <Menu theme="light" mode="inline">
+    <Menu theme="light" mode="inline" defaultSelectedKeys={["999"]}>
       {sideBarChatroomList &&
         sideBarChatroomList.list.map((sideBarChatroom) => (
           <Menu.Item
