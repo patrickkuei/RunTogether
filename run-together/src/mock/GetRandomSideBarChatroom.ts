@@ -1,4 +1,4 @@
-import { ISideBarChatroom, IUser, MessageType } from "../interface";
+import { ISideBarChatroom, IUser } from "../interface";
 import { v4 as uuidv4 } from "uuid";
 import FirstName from "./FirstName.json";
 import LastName from "./LastName.json";

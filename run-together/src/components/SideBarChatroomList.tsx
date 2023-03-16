@@ -42,6 +42,7 @@ export default function SideBarChatroomList({
 
   useEffect(() => {
     fetchSideBarChatroom();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // if sideBarChatroom.tempMessage exist, use it without fetch

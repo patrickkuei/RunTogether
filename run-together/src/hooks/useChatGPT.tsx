@@ -63,6 +63,7 @@ const useChatGPT = (currentParticipant: IUser) => {
     }
 
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prompt]);
 
   return {

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, ReactNode } from "react";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import sideBarChatRoomListSlice from "./sidebarChatroomList/slice";
@@ -11,7 +11,7 @@ const store = configureStore({
   },
 });
 
-export const StoreProvider: FunctionComponent = ({ children }) => (
+export const StoreProvider: FunctionComponent<{children: ReactNode}> = ({ children }) => (
   <Provider store={store}>{children}</Provider>
 );
 
