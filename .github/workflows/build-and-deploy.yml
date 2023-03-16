@@ -27,11 +27,11 @@ jobs:
 
       - name: Build
         run: yarn build
+        env:
+          REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v4
-        env:
-          REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
         with:
           branch: gh-pages
           folder: run-together/build
