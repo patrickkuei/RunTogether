@@ -9,6 +9,9 @@ An frontend-simulated instant communication app that allows users to type messag
 ## DEMO:
 <a href="https://patrickkuei.github.io/RunTogether/" target="_blank"><img src="https://img.shields.io/badge/Live%20Preview-Click%20Here-green?style=for-the-badge&logo=appveyor" alt="Live Preview"></a>
 
+## PREVIEW:
+![Imgur](https://imgur.com/c7pK80h.jpg)
+
 ## Technologies Used
 
 - React 17.0.2
