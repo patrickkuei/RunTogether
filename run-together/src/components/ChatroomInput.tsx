@@ -1,14 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Layout } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
-import Picker, { IEmojiData } from "emoji-picker-react";
+import { IEmojiData } from "emoji-picker-react";
 import { useAppDispatch } from "../redux/app/hooks";
 import { chatroomActions } from "../redux/chatroom/slice";
 import { IChatroom, IChatroomMessage, MessageType } from "../interface";
 import { sideBarChatroomListActions } from "../redux/sidebarChatroomList/slice";
 import useChatGPT from "../hooks/useChatGPT";
+
 const { Footer } = Layout;
+const Picker = dynamic(() => import("emoji-picker-react"), { ssr: false });
 
 type ChatroomInputProps = {
   chatroom: IChatroom;

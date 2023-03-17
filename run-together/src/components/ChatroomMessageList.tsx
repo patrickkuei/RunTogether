@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Layout, Image, Button, Empty } from "antd";
 import { IChatroom, IChatroomMessage } from "../interface";
 import { getRandomMessages } from "../mock/GetRandomMessages";
@@ -23,7 +23,7 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
   const dispatch = useAppDispatch();
   const { loadMore } = chatroomActions;
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     scrollToBottom();
   }, [chatroom?.currentParticipant.id, chatroom?.chatroomMessages]);
 

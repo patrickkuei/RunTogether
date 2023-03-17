@@ -1,7 +1,7 @@
 import { Layout, Image, Typography } from "antd";
 import { Header, Content } from "antd/lib/layout/layout";
 import Sider from "antd/lib/layout/Sider";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ISideBarChatroom } from "../interface";
 
 interface Props {
@@ -19,7 +19,7 @@ const SideBarChatroom: React.FC<Props> = ({ sideBarChatroom, collapsed }) => {
   const visibledPreview = preview
     ? preview.length < 30
       ? preview
-      : `${preview?.substring(0, 30)}...`
+      : `${preview?.slice(0, 30)}...`
     : "";
 
   const getUTCTime = (createdAt: number | undefined): string => {
@@ -36,7 +36,7 @@ const SideBarChatroom: React.FC<Props> = ({ sideBarChatroom, collapsed }) => {
     }
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setIsCollapsed(collapsed);
   }, [collapsed]);
 

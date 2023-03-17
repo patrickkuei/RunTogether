@@ -1,2 +1,3 @@
 ~$readme.pptx
-.env.development
+.env.local
+.next
