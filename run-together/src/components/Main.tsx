@@ -6,7 +6,9 @@ import Chatroom from "./Chatroom";
 
 export default function Main() {
   return (
-    <Layout style={{ maxHeight: "100vh", minHeight: "100vh", overflow:"hidden" }}>
+    <Layout
+      style={{ maxHeight: "100vh", minHeight: "100vh", overflow: "hidden" }}
+    >
       <SideBar />
       <Chatroom />
     </Layout>

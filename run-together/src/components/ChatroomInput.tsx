@@ -25,7 +25,7 @@ export default function ChatroomInput({ chatroom }: ChatroomInputProps) {
   const [isEmojiPickerVisibled, setIsEmojiPickerVisibled] = useState(false);
   const inputRef = useRef<null | HTMLInputElement>(null);
 
-  const { updatePrompt } = useChatGPT(currentParticipant)
+  const { updatePrompt } = useChatGPT(currentParticipant);
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     setInputValue(e.currentTarget.value);
@@ -35,7 +35,7 @@ export default function ChatroomInput({ chatroom }: ChatroomInputProps) {
     e.preventDefault();
 
     if (inputValue !== "") {
-      updatePrompt(inputValue)
+      updatePrompt(inputValue);
 
       const newMessage: IChatroomMessage = {
         id: uuidv4(),

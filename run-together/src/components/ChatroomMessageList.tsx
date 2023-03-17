@@ -39,10 +39,10 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
   };
 
   const getAiResponse = (str: string): string => {
-    const mainTextIndex = str.indexOf("AI:") + 4
+    const mainTextIndex = str.indexOf("AI:") + 4;
 
-    return str.slice(mainTextIndex)
-  }
+    return str.slice(mainTextIndex);
+  };
 
   return (
     <Content className="message-list-container">
@@ -84,16 +84,12 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
                 </div>
               )}
               {message.senderId === 0 ? (
-                <div
-                  className="message user"
-                >
-                  {message.message}
-                </div>
+                <div className="message user">{message.message}</div>
               ) : (
-                <div
-                  className="message"
-                >
-                  {chatroom.currentParticipant.id === 999 ? getAiResponse(message.message) : message.message}
+                <div className="message">
+                  {chatroom.currentParticipant.id === 999
+                    ? getAiResponse(message.message)
+                    : message.message}
                 </div>
               )}
             </div>

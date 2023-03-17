@@ -1,11 +1,11 @@
 export const configs = {
-  size:{
+  size: {
     lg: "large",
     md: "middle",
     sm: "small",
   },
-  sideBar:{
+  sideBar: {
     logo: "Messenger",
-    searchInput: "Search Messenger"
-  }
-}
+    searchInput: "Search Messenger",
+  },
+};

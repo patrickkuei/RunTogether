@@ -4,7 +4,7 @@ import { IChatroom, IChatroomMessage } from "../../interface";
 const updateChatroom = (
   prevState: IChatroom | null,
   action: PayloadAction<IChatroom>
-): IChatroom => ({...prevState, ...action.payload});
+): IChatroom => ({ ...prevState, ...action.payload });
 
 const addMessage = (
   prevState: IChatroom | null,

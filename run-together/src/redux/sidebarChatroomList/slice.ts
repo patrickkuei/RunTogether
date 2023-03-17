@@ -13,7 +13,7 @@ const initialState: ISideBarChatroomList | null = {
         avatarUrl: "https://cdn-icons-png.flaticon.com/512/2432/2432846.png",
       },
       unreadMessageCount: 0,
-      tempMessages: []
+      tempMessages: [],
     },
   ],
 };

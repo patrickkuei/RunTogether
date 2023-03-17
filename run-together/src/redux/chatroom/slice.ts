@@ -5,17 +5,17 @@ import { useAppSelector } from "../app/hooks";
 import { chatroomReducer } from "./Reducers";
 
 const initialState: IChatroom | null = {
-    currentParticipant: {
-      id: 999,
-      name: 'ChatGPT',
-      avatarUrl: 'https://cdn-icons-png.flaticon.com/512/2432/2432846.png',
-    },
-    currentUser: {
-      id: 0,
-      name: 'Human',
-      avatarUrl: '',
-    },
-    chatroomMessages: []
+  currentParticipant: {
+    id: 999,
+    name: "ChatGPT",
+    avatarUrl: "https://cdn-icons-png.flaticon.com/512/2432/2432846.png",
+  },
+  currentUser: {
+    id: 0,
+    name: "Human",
+    avatarUrl: "",
+  },
+  chatroomMessages: [],
 };
 
 export const chatroomSlice = createSlice({

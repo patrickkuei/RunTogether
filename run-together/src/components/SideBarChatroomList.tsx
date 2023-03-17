@@ -35,26 +35,27 @@ export default function SideBarChatroomList({
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchSideBarChatroom = () => {
-    const newSideBarChatroomList: ISideBarChatroom[] = sideBarChatroomAPIs.getSideBarChatroomList();
+    const newSideBarChatroomList: ISideBarChatroom[] =
+      sideBarChatroomAPIs.getSideBarChatroomList();
     dispatch(updateSideBarChatroomList(newSideBarChatroomList));
     setIsLoading(false);
   };
 
   useEffect(() => {
     fetchSideBarChatroom();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // if sideBarChatroom.tempMessage exist, use it without fetch
   const getMessages = (
     sideBarChatroom: ISideBarChatroom
   ): IChatroomMessage[] | undefined => {
-    if (sideBarChatroom.tempMessages === undefined && sideBarChatroom.id !== '999') {
-      const newMessages:
-        | IChatroomMessage[]
-        | undefined = chatroomAPIs.getChatroomMessages(
-        sideBarChatroom.participant.id
-      );
+    if (
+      sideBarChatroom.tempMessages === undefined &&
+      sideBarChatroom.id !== "999"
+    ) {
+      const newMessages: IChatroomMessage[] | undefined =
+        chatroomAPIs.getChatroomMessages(sideBarChatroom.participant.id);
       dispatch(
         updateTempMessagesByParticipant({
           participant: sideBarChatroom.participant,

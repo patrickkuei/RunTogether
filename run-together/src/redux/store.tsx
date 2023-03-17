@@ -11,9 +11,9 @@ const store = configureStore({
   },
 });
 
-export const StoreProvider: FunctionComponent<{children: ReactNode}> = ({ children }) => (
-  <Provider store={store}>{children}</Provider>
-);
+export const StoreProvider: FunctionComponent<{ children: ReactNode }> = ({
+  children,
+}) => <Provider store={store}>{children}</Provider>;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
