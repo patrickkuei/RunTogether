@@ -76,6 +76,7 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
               ) : (
                 <div className="avatar">
                   <Image
+                    alt="avatar"
                     src={avatarUrl}
                     width={30}
                     height={30}

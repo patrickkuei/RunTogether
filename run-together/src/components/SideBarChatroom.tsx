@@ -42,6 +42,7 @@ const SideBarChatroom: React.FC<Props> = ({ sideBarChatroom, collapsed }) => {
 
   return isCollapsed ? (
     <Image
+      alt="avatar"
       width={50}
       height={50}
       src={avatarUrl}
@@ -57,6 +58,7 @@ const SideBarChatroom: React.FC<Props> = ({ sideBarChatroom, collapsed }) => {
         className="sideBar-chatroom_avatar-img-container"
       >
         <Image
+          alt="avatar"
           width={50}
           height={50}
           src={avatarUrl}
