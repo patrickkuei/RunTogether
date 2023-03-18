@@ -9,7 +9,7 @@ But that's not all - we are excited to announce the integration of our latest fe
 We've also made it easy for you to read AI's coding posts with our new code block feature. Simply ask AI to code in any language you like and the code will be automatically surrounded by code blocks for ease of reading.
 
 ## DEMO:
-<a href="https://patrickkuei.github.io/RunTogether/" target="_blank"><img src="https://img.shields.io/badge/Live%20Preview-Click%20Here-green?style=for-the-badge&logo=appveyor" alt="Live Preview"></a>
+<a href="https://run-together.vercel.app/" target="_blank"><img src="https://img.shields.io/badge/Live%20Preview-Click%20Here-green?style=for-the-badge&logo=appveyor" alt="Live Preview"></a>
 
 ## PREVIEW:
 ![Imgur](https://imgur.com/GnXEMx8.jpg)
