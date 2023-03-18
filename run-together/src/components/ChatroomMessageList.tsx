@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Layout, Image, Button, Empty } from "antd";
 import { IChatroom, IChatroomMessage } from "../interface";
 import { getRandomMessages } from "../mock/GetRandomMessages";
 import { chatroomActions } from "../redux/chatroom/slice";
 import { useAppDispatch } from "../redux/app/hooks";
+import CodeDisplay from "./share/CodeDisplay";
 const { Content } = Layout;
 
 type MessageListProps = {
@@ -39,9 +40,58 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
   };
 
   const getAiResponse = (str: string): string => {
-    const mainTextIndex = str.indexOf("AI:") + 4;
+    const index = str.indexOf("AI:");
 
-    return str.slice(mainTextIndex);
+    return index < 0 ? str : str.slice(index + 4);
+  };
+
+  const splitSentenceIntoWordsAndCode = useCallback((sentence: string) => {
+    const regex = /```[\s\S]*?```/gm;
+    const codeBlocks = sentence.match(regex);
+
+    if (!codeBlocks || codeBlocks.length === 0) {
+      return [sentence];
+    }
+
+    const blocks = [];
+    let lastIndex = 0;
+
+    codeBlocks.forEach((codeBlock) => {
+      const index = sentence.indexOf(codeBlock, lastIndex);
+
+      if (index > lastIndex) {
+        blocks.push(sentence.substring(lastIndex, index).replace(/```/g, ""));
+      }
+
+      blocks.push(codeBlock.replace(/```/g, ""));
+      lastIndex = index + codeBlock.length;
+    });
+
+    if (lastIndex < sentence.length) {
+      blocks.push(sentence.substring(lastIndex));
+    }
+
+    return blocks;
+  }, []);
+
+  const renderMessage = (message: IChatroomMessage) => {
+    const className = message.senderId ? "message" : "message user";
+    const formattedTexts = splitSentenceIntoWordsAndCode(message.message);
+
+    const textDom = formattedTexts.map((text, idx) => {
+      const formattedText =
+        chatroom?.currentParticipant.id === 999 && message.senderId === 999
+          ? getAiResponse(text)
+          : text;
+
+      return idx % 2 ? (
+        <CodeDisplay key={text} value={formattedText} />
+      ) : (
+        formattedText
+      );
+    });
+
+    return <div className={className}>{textDom}</div>;
   };
 
   return (
@@ -84,15 +134,7 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
                   />
                 </div>
               )}
-              {message.senderId === 0 ? (
-                <div className="message user">{message.message}</div>
-              ) : (
-                <div className="message">
-                  {chatroom.currentParticipant.id === 999
-                    ? getAiResponse(message.message)
-                    : message.message}
-                </div>
-              )}
+              {renderMessage(message)}
             </div>
           ))}
         </div>
