@@ -75,7 +75,9 @@ export default function ChatroomInput({ chatroom }: ChatroomInputProps) {
   }, [chatroom]);
 
   return (
-    <Footer style={{ display: "flex" }}>
+    <Footer
+      style={{ display: "flex", boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px;" }}
+    >
       <form style={{ flex: 1 }} onSubmit={handleFormSubmit}>
         <input
           onFocus={handleInputFocused}
