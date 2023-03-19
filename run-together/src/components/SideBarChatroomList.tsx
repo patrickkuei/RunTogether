@@ -78,6 +78,7 @@ export default function SideBarChatroomList({
       currentParticipant: sideBarChatroom.participant,
       currentUser,
       chatroomMessages: getMessages(sideBarChatroom),
+      isResponding: false,
     };
     return newChatroom;
   };
