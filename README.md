@@ -12,7 +12,7 @@ We've also made it easy for you to read AI's coding posts with our new code bloc
 <a href="https://run-together.vercel.app/" target="_blank"><img src="https://img.shields.io/badge/Live%20Preview-Click%20Here-green?style=for-the-badge&logo=appveyor" alt="Live Preview"></a>
 
 ## PREVIEW:
-![Imgur](https://imgur.com/GnXEMx8.jpg)
+![Imgur](https://imgur.com/RyivRPA.jpg)
 
 ## Technologies Used
 

@@ -54,13 +54,13 @@ $dot-color-active: #0958d9;
         }
         .message {
           background: #4179f1;
-          padding: 8px;
+          padding: 6px 16px;
           border-radius: 16px;
           color: #ffffff;
+          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          font-size: 16px;
           &.user {
             background: #f1f8e9;
-            padding: 8px;
-            border-radius: 16px;
             color: #000000;
           }
           &.typing-indicator {
