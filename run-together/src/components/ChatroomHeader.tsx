@@ -28,7 +28,6 @@ export default function ChatroomHeader({ chatroom }: ChatroomHeaderProps) {
           <Image
             alt="avatar"
             width={50}
-            height={50}
             src={currentUser.avatarUrl}
             preview={false}
             className="user-img"
