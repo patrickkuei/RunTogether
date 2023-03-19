@@ -137,6 +137,7 @@ export default function ChatroomMessageList({ chatroom }: MessageListProps) {
               {renderMessage(message)}
             </div>
           ))}
+          <TypingIndicator avatarUrl={avatarUrl || ""} />
         </div>
       ) : (
         <div

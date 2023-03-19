@@ -16,6 +16,7 @@ const initialState: IChatroom | null = {
     avatarUrl: "",
   },
   chatroomMessages: [],
+  isResponding: false,
 };
 
 export const chatroomSlice = createSlice({

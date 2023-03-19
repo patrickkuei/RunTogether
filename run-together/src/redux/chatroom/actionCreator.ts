@@ -35,6 +35,18 @@ const loadMore = (
   }
 };
 
-const actions = { updateChatroom, addMessage, loadMore };
+const setIsResponding = (
+  prevState: IChatroom | null,
+  action: PayloadAction<boolean>
+): IChatroom | void => {
+  if (prevState !== null) {
+    return {
+      ...prevState,
+      isResponding: action.payload,
+    };
+  }
+};
+
+const actions = { updateChatroom, addMessage, loadMore, setIsResponding };
 
 export default actions;

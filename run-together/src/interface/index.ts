@@ -34,6 +34,7 @@ export interface IChatroom {
   currentParticipant: IUser;
   currentUser: IUser;
   chatroomMessages?: IChatroomMessage[];
+  isResponding: boolean;
 }
 
 export interface IChatroomMessage {
