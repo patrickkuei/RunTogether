@@ -4,6 +4,7 @@
   @include override-background(#ffffff);
   color: #000000;
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   .sideBar_header {
     background: #ffffff;
     @include display-flex(center, left);
